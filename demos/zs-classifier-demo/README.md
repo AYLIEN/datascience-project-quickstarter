@@ -1,4 +1,7 @@
-We made an example demo for zero-shot event classification.
+### Building a Simple Demo for Zero-Shot Classification
+
+We built a demo for zero-shot classification using [Streamlit](https://streamlit.io/) which is great creating simple apps quickly.
+
 
 Make sure you're currently in this demo directory:
 
