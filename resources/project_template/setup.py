@@ -7,8 +7,8 @@ with open("VERSION") as f:
     version = f.read().strip()
 
 setup(
-    name="zs_classification",
+    name="PKG_NAME",
     version=version,
-    packages=["zs_classification"],
+    packages=["PKG_NAME"],
     install_requires=requirements
 )
