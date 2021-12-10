@@ -1,6 +1,6 @@
 # Data Science Project Quick-Starter
 
-This is an opinionated template for bootstrapping real-world datascience projects that are maintainable and easy to understand.
+This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
 
 This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
 
