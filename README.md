@@ -1,6 +1,10 @@
 # Data Science Project Quick-Starter
 
-## A Guide through our Project Structure
+This is an opinionated template for bootstrapping real-world datascience projects that are maintainable and easy to understand.
+
+This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
+
+## Project Structure
 
 The top-level structure of our projects usually looks like this:
 ```
@@ -15,6 +19,8 @@ The top-level structure of our projects usually looks like this:
 ├── setup.py
 ├── VERSION
 ```
+
+An overview of each component of this template follows. 
 
 #### The [`research/`](research) directory
 
