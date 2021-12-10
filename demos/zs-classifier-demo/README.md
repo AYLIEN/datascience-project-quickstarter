@@ -1,6 +1,6 @@
 ### Building a Simple Demo for Zero-Shot Classification
 
-We built a demo for zero-shot classification using [Streamlit](https://streamlit.io/) which is great creating simple apps quickly.
+We built a demo for zero-shot classification using [Streamlit](https://streamlit.io/) which is great creating for creating simple demo apps quickly.
 
 
 Make sure you're currently in this demo directory:
