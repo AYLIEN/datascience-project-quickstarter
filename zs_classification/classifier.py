@@ -1,7 +1,3 @@
-import torch
-from sentence_transformers import util
-
-
 class ZeroShotClassifier:
     def __init__(
             self,
@@ -15,8 +11,14 @@ class ZeroShotClassifier:
         self.threshold = threshold
         self.null_label = null_label
 
+    def reset(self):
+        self.v.reset()
+
     def add_labels(self, labels, descriptions):
-        label_embeddings = self.model.encode(descriptions)
+        label_embeddings = self.model.encode(
+            descriptions,
+            convert_to_tensor=True
+        )
         self.v.add(labels, label_embeddings)
 
     def remove_labels(self, labels):
@@ -29,7 +31,10 @@ class ZeroShotClassifier:
             output_scores=False,
             topk=None
         ):
-        input_embeddings = self.model.encode(input_texts)
+        input_embeddings = self.model.encode(
+            input_texts,
+            convert_to_tensor=True
+        )        
         nn_results = self.v.neighbors(
             input_embeddings,
             thresh=threshold,

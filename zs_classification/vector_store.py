@@ -2,6 +2,10 @@ import torch
 from sentence_transformers.util import pytorch_cos_sim
 
 
+class EmptyVectorStoreException(Exception):
+    pass
+
+
 class VectorStore:
     """
     Stores vectors associated with IDs.
@@ -13,6 +17,9 @@ class VectorStore:
         raise NotImplementedError
 
     def remove(self, items):
+        raise NotImplementedError
+
+    def reset(self):
         raise NotImplementedError
 
 
@@ -30,6 +37,11 @@ class NaiveVectorStore(VectorStore):
         Get k nearest neighbors and their similarities.
         k=-1 returns all items & similarities.
         """
+        if self.matrix is None:
+            raise EmptyVectorStoreException(
+                "Vector store is empty, needs to be populated before querying."
+            )
+
         S = pytorch_cos_sim(query_vectors, self.matrix)
         outputs = []
         for i in range(len(query_vectors)):
@@ -73,6 +85,7 @@ class NaiveVectorStore(VectorStore):
             self.matrix[i] for i in range(len(self.matrix))
             if i not in deleted_indices
         ]
+        new_matrix = torch.stack(new_matrix, dim=0)
         new_ids = [
             idx_to_id[i] for i in range(len(self.matrix))
             if i not in deleted_indices
@@ -80,3 +93,8 @@ class NaiveVectorStore(VectorStore):
         self.ids = new_ids
         self.id_to_idx = dict((id, i) for i, id in enumerate(new_ids))
         self.matrix = new_matrix
+
+    def reset(self):
+        self.matrix = None
+        self.ids = None
+        self.id_to_idx = {}

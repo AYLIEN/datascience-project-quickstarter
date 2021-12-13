@@ -25,6 +25,17 @@ class TestClassifier(unittest.TestCase):
         predicted_labels = classifier.predict(snippets)
         assert predicted_labels == self.labels
 
+    def test_add_labels_separate(self):
+        classifier = ZeroShotClassifier(
+            model=self.model,
+            vector_store=NaiveVectorStore()
+        )
+        for l, d in zip(self.labels, self.descriptions):
+            classifier.add_labels([l], [d])
+        snippets = ["flame", "ocean", "hurricane"]
+        predicted_labels = classifier.predict(snippets)
+        assert predicted_labels == self.labels
+
     def test_remove_labels(self):
         classifier = ZeroShotClassifier(
             model=self.model,
@@ -50,7 +61,6 @@ class TestClassifier(unittest.TestCase):
             )
             scores = [score for pred in predictions for l, score in pred]
             assert len(scores) == 0 or max(scores) >= t
-
 
 
 if __name__ == '__main__':

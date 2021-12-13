@@ -3,7 +3,7 @@ import torch
 from zs_classification.vector_store import NaiveVectorStore
 
 
-class TestBruteforceVectorStorage(unittest.TestCase):
+class TestNaiveVectorStore(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.vectors = torch.tensor([
