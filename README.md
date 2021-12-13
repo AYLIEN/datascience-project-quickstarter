@@ -1,4 +1,4 @@
-# Data Science Project Quick-Starter
+# Data Science Project Quickstarter
 
 This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
 
@@ -20,7 +20,7 @@ The top-level structure of our projects usually looks like this:
 ├── VERSION
 ```
 
-An overview of each component of this template follows. 
+An overview of each component of this template follows.
 
 #### The [`research/`](research) directory
 

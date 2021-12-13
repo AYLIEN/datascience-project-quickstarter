@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package zs_classification;
+
+
+message ScoredLabel {
+    string label = 1;
+    float score = 2;
+}
+
+message ClassifyRequest {
+    string text = 1;
+    float threshold = 2;
+    float topk = 3;
+}
+
+message ClassifyResponse {
+    string error = 1;
+    repeated ScoredLabel scored_labels = 2;
+}
+
+message AddLabelRequest {
+    string label = 1;
+    string description = 2;
+}
+
+message AddLabelResponse {
+    string error = 1;
+}
+
+message RemoveLabelRequest {
+    string label = 1;
+}
+
+message RemoveLabelResponse {
+    string error = 1;
+}
+
+message ResetRequest {
+}
+
+message ResetResponse {
+    string error = 1;
+}
