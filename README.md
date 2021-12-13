@@ -46,19 +46,69 @@ This directory contains executable scripts, usually written in Python or bash. T
 #### New environment
 To use or work on this project, we first want to create a project-specific Python environment, let's call it `zsc`. <br>
 
-Run `conda create -n zsc python=3.8` if you're using Anaconda, alternatively `python3.8 -m venv zsc`
+Option 1 with Anaconda:
+```bash
+# Create new environment
+conda create -n zsc python=3.8
+# Activate new environment
+conda activate zsc
+```
 
-Activate the environment: <br>
-Run `conda activate zsc` or `source zsc/bin/activate`
+Option 2 with Venv:
+```bash
+# Create new environment
+python3.8 -m venv zsc
+# Activate new environment
+source zsc/bin/activate
+```
 
-#### Install library
+
+#### Install
 Run `make dev`
 
 This will install the dependencies in `requirements.txt` and the `zs_classification` library in development mode.
 
+#### Using the library
+This examples shows how to use the `zs_classification` library to create a zero-shot text classifier.
+```python
+from zs_classification.classifier import ZeroShotClassifier
+from zs_classification.vector_store import NaiveVectorStore
+from sentence_transformers import SentenceTransformer
+from pprint import pprint
+
+
+model = SentenceTransformer("paraphrase-mpnet-base-v2", device="cpu")
+classifier = ZeroShotClassifier(model=model, vector_store=NaiveVectorStore())
+
+labels = ["fire", "water", "wind"]
+descriptions = ["fire", "water", "wind"]
+classifier.add_labels(labels, descriptions)
+
+snippets = ["flame", "ocean", "hurricane"]
+predictions = classifier.predict(snippets, output_scores=True)
+pprint(predictions)
+```
+
+#### Using the service
+Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
+
+| Endpoint | Request Format | Explanation |
+|---|---|---|
+| `/add` | `{"label": "<label>", "description": "<description>"}` | Adding a new label |
+| `/classify` | At minimum: `{"text": "<text>"}`<br>Optional settings: `{"text": "<text>", "threshold": 0.1, "topk": 10}` | Classify a text snippet |
+| `/remove` | `{"label": "<label>"}` | Remove a label |
+| `/reset` | (no data) | Delete all labels |
+
+The requests have to follow a Protobuf schema defined in [schema.proto](schema.proto).
+
+We provide request examples in [research/library_usage.py](research/service_usage.py).
+
+
 ## Create New Project
-To create a project, pick a project directory and a name for the project's Python package, and run:
+The above project is a simple example for an NLP research idea and a resulting tool.
+
+To create an new empty project, pick a project directory and a name for the project's Python package, and run:
 
 `PROJ_DIR=my_project PKG_NAME=my_lib make init`
 
-This will create an empty new project from scratch, including all of the default components described above.
+This will create an empty new project from scratch, including all of the default components.
