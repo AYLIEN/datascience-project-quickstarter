@@ -1,5 +1,23 @@
 # Data Science Project Quickstarter
 
+#### TODO
+
+- [ ] add cherrypy service template instead of using `model-serving`
+- [ ] separate dev/prod dependencies
+- [ ] demo-specific requirements.txt files
+- [ ] `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
+
+Other ideas
+* separate and hide the templating code & resources more, e.g. all in a hidden folder
+
+The templating parts are currently these:
+* [bin/create_project.py](create_project.py)
+* [bin/create_demo.py](create_demo.py)
+* [resources/project_template](resources/project_template)
+* [resources/demo_template](resources/demo_template)
+
+-----
+
 This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
 
 This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
@@ -103,12 +121,36 @@ The requests have to follow a Protobuf schema defined in [schema.proto](schema.p
 
 We provide request examples in [research/library_usage.py](research/service_usage.py).
 
+#### Docker image
+Finally, we containerize the service by creating a Docker image:
+
+```bash
+# create Docker image
+make build
+
+# run container locally
+docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
+```
+
+Deployment will be easy once you have a working Docker image!
 
 ## Create New Project
 The above project is a simple example for an NLP research idea and a resulting tool.
 
 To create an new empty project, pick a project directory and a name for the project's Python package, and run:
 
-`PROJ_DIR=my_project PKG_NAME=my_lib make init`
+`PROJ_DIR=my_project PKG_NAME=my_lib make new-project`
 
 This will create an empty new project from scratch, including all of the default components.
+
+Here is a checklist to turn the new project into a fully functional tool:
+- [ ] implement your project's core functionality in the Python package
+- [ ] maintain dependencies in `requirements.txt`
+- [ ] implement a demo
+- [ ] implement service
+
+### New Demo
+Within a project, you can initialize a new demo as follows: <br>
+`DEMO_NAME=mydemo make new-demo`
+
+A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
