@@ -1,12 +1,14 @@
 CONTAINER     := zs-classifier-demo
 VERSION       ?= `cat VERSION`
 
+
 .PHONY: run
 run:
 	streamlit --log_level debug run \
-			  --server.port 9000 \
+			  --server.port 8000 \
 			  --server.baseUrlPath zs-classifier \
 		  	  demo.py
+
 
 .PHONY: build
 build:

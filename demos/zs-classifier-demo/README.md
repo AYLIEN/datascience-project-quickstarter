@@ -17,4 +17,4 @@ To easily ship around the demo as a service, let's build a Docker container:
 
 This always takes a few minutes to complete. You can now run the container locally:
 
-`docker run -p 9000:9000 -e --rm -it zs-classifier:0.1`
+`docker run -p 8000:8000 -e --rm -it zs-classifier-demo:0.1`
