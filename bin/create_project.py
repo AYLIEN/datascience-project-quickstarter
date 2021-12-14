@@ -29,6 +29,7 @@ def main(args):
     (project_dir / "demos").mkdir()
     (project_dir / "bin").mkdir()
     (project_dir / "resources").mkdir()
+    (project_dir / "research").mkdir()
     pkg_dir.mkdir()
 
 
