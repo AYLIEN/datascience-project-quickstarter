@@ -13,8 +13,8 @@ Other ideas
 * separate and hide the templating code & resources more, e.g. all in a hidden folder
 
 The templating parts are currently these:
-* [bin/create_project.py](create_project.py)
-* [bin/create_demo.py](create_demo.py)
+* [bin/create_project.py](bin/create_project.py)
+* [bin/create_demo.py](bin/create_demo.py)
 * [resources/project_template](resources/project_template)
 * [resources/demo_template](resources/demo_template)
 
