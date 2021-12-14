@@ -6,6 +6,8 @@
 - [ ] separate dev/prod dependencies
 - [ ] demo-specific requirements.txt files
 - [ ] `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
+- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so
+- [ ] make command for docker run (currently only mentioned in readme)
 
 Other ideas
 * separate and hide the templating code & resources more, e.g. all in a hidden folder
