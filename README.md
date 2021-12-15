@@ -92,7 +92,7 @@ Currently we also need install `model-serving`:
 
 ```
 git clone git@github.com:AYLIEN/model-serving.git
-pip install model-serving
+pip install ./model-serving
 ```
 
 #### Using the library
