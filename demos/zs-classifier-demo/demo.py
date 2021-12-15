@@ -11,6 +11,7 @@ import streamlit.report_thread as ReportThread
 from streamlit.server.server import Server
 
 from zs_classification.classifier import ZeroShotClassifier
+from zs_classification.vector_store import NaiveVectorStore
 from sentence_transformers import SentenceTransformer
 
 page_config = st.set_page_config(
@@ -50,8 +51,11 @@ def build_classifier(label_to_desc):
     labels = sorted(label_to_desc)
     descriptions = [label_to_desc[l] for l in labels]
     model = load_model()
-    classifier = ZeroShotClassifier(model)
-    classifier.train(labels, descriptions)
+    classifier = ZeroShotClassifier(
+        model=model,
+        vector_store=NaiveVectorStore()
+    )
+    classifier.add_labels(labels, descriptions)
     return classifier
 
 
@@ -95,7 +99,7 @@ def main():
     input = st.text_area("Enter text to classify", "it's a sunny day")
     if st.button("Classify"):
         classifier = session_state["classifier"]
-        _, scored = classifier.predict([input], output_scores=True)
+        scored = classifier.predict([input], output_scores=True)
         scored = scored[0]
         top_label = scored[0][0]
         st.write(f"This text is classified as `{top_label}`.")
