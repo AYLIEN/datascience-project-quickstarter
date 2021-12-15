@@ -1,6 +1,4 @@
 import argparse
-import json
-import cherrypy
 import aylien_model_serving.service as svc
 from zs_classification.classifier import ZeroShotClassifier
 from zs_classification.vector_store import NaiveVectorStore
@@ -8,39 +6,36 @@ from zs_classification.vector_store import EmptyVectorStoreException
 import zs_classification.schema_pb2 as schema
 import google.protobuf.json_format as proto_json
 from sentence_transformers import SentenceTransformer
-from pprint import pprint
 
 
 class ServingHandler:
     def __init__(self, args):
         self.logger = svc.create_logger(__name__)
         self.version = self._parse_args(args)
-        model = SentenceTransformer(
-            "paraphrase-mpnet-base-v2",
-            device="cpu"
-        )
+        model = SentenceTransformer("paraphrase-mpnet-base-v2", device="cpu")
         self.classifier = ZeroShotClassifier(
-            model=model,
-            vector_store=NaiveVectorStore()
+            model=model, vector_store=NaiveVectorStore()
         )
         self.label_to_description = {}
 
     def _parse_args(self, args):
         parser = argparse.ArgumentParser()
         parser.add_argument(
-            '--version',
+            "--version",
             type=str,
-            default='0.1',
-            help='an example argument to the handler'
+            default="0.1",
+            help="an example argument to the handler",
         )
         parsed = parser.parse_args(args)
         return parsed.version
 
     def handlers(self):
-        return {"/reset": self.handle_reset,
-                "/add": self.handle_add_label,
-                "/remove": self.handle_remove_label,
-                "/classify": self.handle_classify}
+        return {
+            "/reset": self.handle_reset,
+            "/add": self.handle_add_label,
+            "/remove": self.handle_remove_label,
+            "/classify": self.handle_classify,
+        }
 
     def handle_reset(self, request):
         request = proto_json.Parse(request, schema.ResetRequest())
@@ -49,9 +44,7 @@ class ServingHandler:
 
     def handle_add_label(self, request):
         request = proto_json.Parse(request, schema.AddLabelRequest())
-        self.classifier.add_labels(
-            [request.label], [request.description]
-        )
+        self.classifier.add_labels([request.label], [request.description])
         return schema.AddLabelResponse()
 
     def handle_remove_label(self, request):
@@ -67,13 +60,11 @@ class ServingHandler:
 
         try:
             scored_labels = self.classifier.predict(
-                texts,
-                threshold=threshold,
-                topk=topk,
-                output_scores=True
+                texts, threshold=threshold, topk=topk, output_scores=True
             )[0]
             scored_labels = [
-                schema.ScoredLabel(label=l, score=s) for l, s in scored_labels
+                schema.ScoredLabel(label=label, score=score)
+                for label, score in scored_labels
             ]
             response = schema.ClassifyResponse()
             response.scored_labels.extend(scored_labels)
@@ -85,4 +76,4 @@ class ServingHandler:
         return request
 
     def json_out(self, response):
-        return proto_json.MessageToJson(response).encode('utf-8')
+        return proto_json.MessageToJson(response).encode("utf-8")

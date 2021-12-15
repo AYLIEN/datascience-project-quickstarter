@@ -1,10 +1,10 @@
 class ZeroShotClassifier:
     def __init__(
-            self,
-            model=None,
-            vector_store=None,
-            threshold=None,
-            null_label="OTHER"
+        self,
+        model=None,
+        vector_store=None,
+        threshold=None,
+        null_label="OTHER"
     ):
         self.model = model
         self.v = vector_store
@@ -16,8 +16,7 @@ class ZeroShotClassifier:
 
     def add_labels(self, labels, descriptions):
         label_embeddings = self.model.encode(
-            descriptions,
-            convert_to_tensor=True
+            descriptions, convert_to_tensor=True
         )
         self.v.add(labels, label_embeddings)
 
@@ -27,14 +26,13 @@ class ZeroShotClassifier:
     def predict(
             self,
             input_texts,
-            threshold=0.,
+            threshold=0.0,
             output_scores=False,
             topk=None
-        ):
+    ):
         input_embeddings = self.model.encode(
-            input_texts,
-            convert_to_tensor=True
-        )        
+            input_texts, convert_to_tensor=True
+        )
         nn_results = self.v.neighbors(
             input_embeddings,
             thresh=threshold,

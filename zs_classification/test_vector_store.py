@@ -6,11 +6,13 @@ from zs_classification.vector_store import NaiveVectorStore
 class TestNaiveVectorStore(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.vectors = torch.tensor([
-            [0.1, 0.1, 0.1, 0.0, 0.0, 0.0],
-            [0.0, 0.0, 0.0, 0.1, 0.1, 0.1],
-            [0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
-        ])
+        cls.vectors = torch.tensor(
+            [
+                [0.1, 0.1, 0.1, 0.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0, 0.1, 0.1, 0.1],
+                [0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+            ]
+        )
         cls.ids = ["first-half", "last-half", "all"]
 
     def test_add(self):
@@ -53,5 +55,5 @@ class TestNaiveVectorStore(unittest.TestCase):
             assert len(neighbors) == k
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

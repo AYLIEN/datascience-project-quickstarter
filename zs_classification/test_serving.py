@@ -12,13 +12,9 @@ examples_add = [
     {"label": "WATER", "description": "water"},
 ]
 
-example_classify = {
-    "text": "It's windy today."
-}
+example_classify = {"text": "It's windy today."}
 
-example_remove = {
-    "label": "WIND"
-}
+example_remove = {"label": "WIND"}
 
 example_reset = {}
 
@@ -27,21 +23,19 @@ class TestServingHandler(ServingHandler):
     """
     Simplified handler class that is easier to initialise for testing.
     """
+
     def __init__(self, model):
         self.classifier = ZeroShotClassifier(
-            model=model,
-            vector_store=NaiveVectorStore()
+            model=model, vector_store=NaiveVectorStore()
         )
         self.label_to_description = {}
 
 
 class TestServing(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         cls.model = SentenceTransformer(
-            "paraphrase-mpnet-base-v2",
-            device="cpu"
+            "paraphrase-mpnet-base-v2", device="cpu"
         )
 
     def test_add_label(self):
@@ -88,5 +82,6 @@ class TestServing(unittest.TestCase):
         with self.assertRaises(svc.RequestFailed):
             handler.handle_classify(request)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

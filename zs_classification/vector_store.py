@@ -10,6 +10,7 @@ class VectorStore:
     """
     Stores vectors associated with IDs.
     """
+
     def neighbors(self, query_vectors):
         raise NotImplementedError
 
@@ -27,6 +28,7 @@ class NaiveVectorStore(VectorStore):
     """
     Toy index, storing vectors as 2-d torch.Tensor.
     """
+
     def __init__(self):
         self.matrix = None
         self.ids = None
@@ -47,9 +49,7 @@ class NaiveVectorStore(VectorStore):
         for i in range(len(query_vectors)):
             scores = S[i].tolist()
             scored = sorted(
-                zip(self.ids, scores),
-                key=lambda x: x[1],
-                reverse=True
+                zip(self.ids, scores), key=lambda x: x[1], reverse=True
             )
             if thresh is not None:
                 scored = [(id, x) for id, x in scored if x >= thresh]
