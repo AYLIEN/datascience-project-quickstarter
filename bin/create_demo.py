@@ -16,7 +16,7 @@ def write_file(content, path):
 
 
 def main(args):
-    assert(args.dirname.strip() != "")
+    assert args.dirname.strip() != ""
 
     project_dir = Path(".")
     template_dir = Path("resources/demo_template")
@@ -43,7 +43,9 @@ def main(args):
     # Dockerfile
     dockerfile_content = read_file(template_dir / "Dockerfile")
     dockerfile_content = dockerfile_content.replace("PKG_NAME", pkg_name)
-    dockerfile_content = dockerfile_content.replace("DEMO_DIRNAME", demo_dirname)
+    dockerfile_content = dockerfile_content.replace(
+        "DEMO_DIRNAME", demo_dirname
+    )
     write_file(dockerfile_content, demo_dir / "Dockerfile")
 
     # files that are simply copied unmodified
@@ -53,9 +55,9 @@ def main(args):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dirname', required=True)
+    parser.add_argument("--dirname", required=True)
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(parse_args())

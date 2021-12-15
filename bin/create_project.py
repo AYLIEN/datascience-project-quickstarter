@@ -16,8 +16,8 @@ def write_file(content, path):
 
 
 def main(args):
-    assert(args.project_dir.strip() != "")
-    assert(args.pkg_name.strip() != "")
+    assert args.project_dir.strip() != ""
+    assert args.pkg_name.strip() != ""
 
     template_dir = Path("resources/project_template")
     project_dir = Path(args.project_dir)
@@ -31,7 +31,6 @@ def main(args):
     (project_dir / "resources").mkdir()
     (project_dir / "research").mkdir()
     pkg_dir.mkdir()
-
 
     # Readme
     readme_content = read_file(template_dir / "README.md")
@@ -76,17 +75,15 @@ def main(args):
     )
 
     with open(project_dir / "project.json", "w") as f:
-        f.write(json.dumps(
-            {"package": args.pkg_name}
-        ))
+        f.write(json.dumps({"package": args.pkg_name}))
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--project-dir', required=True)
-    parser.add_argument('--pkg-name', required=True)
+    parser.add_argument("--project-dir", required=True)
+    parser.add_argument("--pkg-name", required=True)
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(parse_args())
