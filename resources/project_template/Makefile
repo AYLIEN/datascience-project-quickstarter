@@ -28,7 +28,7 @@ dev:
 test:
 	python -Wignore -m unittest discover ; \
 	flake8 PKG_NAME_ bin --exclude schema_pb2.py ; \
-	black PKG_NAME_ bin --check --line-length=79 --exclude schema_pb2.py --experimental-string-processing
+	#black PKG_NAME_ bin --check --line-length=79 --exclude schema_pb2.py --experimental-string-processing
 
 
 .PHONY: proto

@@ -88,6 +88,13 @@ Run `make dev`
 
 This will install the dependencies in `requirements.txt` and the `zs_classification` library in development mode.
 
+Currently we also need install `model-serving`:
+
+```
+git clone git@github.com:AYLIEN/model-serving.git
+pip install model-serving
+```
+
 #### Using the library
 This examples shows how to use the `zs_classification` library to create a zero-shot text classifier.
 ```python
