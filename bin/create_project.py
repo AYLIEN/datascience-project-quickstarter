@@ -51,12 +51,12 @@ def main(args):
 
     # Dockerfile
     dockerfile_content = read_file(template_dir / "Dockerfile")
-    dockerfile_content = makefile_content.replace("PKG_NAME", args.pkg_name)
+    dockerfile_content = dockerfile_content.replace("PKG_NAME", args.pkg_name)
     write_file(dockerfile_content, project_dir / "Dockerfile")
 
     # schema.proto
     schema_content = read_file(template_dir / "schema.proto")
-    schema_content = makefile_content.replace("PKG_NAME", args.pkg_name)
+    schema_content = schema_content.replace("PKG_NAME", args.pkg_name)
     write_file(schema_content, project_dir / "schema.proto")
 
     # files that are simply copied unmodified
