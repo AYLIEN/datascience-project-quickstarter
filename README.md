@@ -1,5 +1,9 @@
 # Data Science Project Quickstarter
 
+This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
+
+This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
+
 #### TODO
 
 - [ ] add cherrypy service template instead of using `model-serving`
@@ -20,9 +24,28 @@ The templating parts are currently these:
 
 -----
 
-This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
+## Quickstart 
 
-This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
+(1) clone repo
+```
+git clone https://github.com/AYLIEN/datascience-project-quickstarter
+cd datascience-project-quickstarter
+```
+
+Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)), 
+Then bootstrap a new project
+```
+export PROJECT_NAME=my-test-project
+
+# skip the next two lines if you prefer to create python environments in a different way
+conda create -n $PROJECT_NAME python=3.7
+
+conda activate $PROJECT_NAME
+
+# now create a new project
+PROJECT_NAME=$PROJECT_NAME make new-project
+```
+
 
 ## Project Structure
 
@@ -95,8 +118,9 @@ git clone git@github.com:AYLIEN/model-serving.git
 pip install ./model-serving
 ```
 
-#### Using the library
-This examples shows how to use the `zs_classification` library to create a zero-shot text classifier.
+#### Using the example library
+
+This example shows how to use the `zs_classification` library to create a zero-shot text classifier.
 ```python
 from zs_classification.classifier import ZeroShotClassifier
 from zs_classification.vector_store import NaiveVectorStore
@@ -116,7 +140,7 @@ predictions = classifier.predict(snippets, output_scores=True)
 pprint(predictions)
 ```
 
-#### Using the service
+#### Using the example service
 Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
 
 | Endpoint | Request Format | Explanation |
@@ -131,7 +155,7 @@ The requests have to follow a Protobuf schema defined in [schema.proto](schema.p
 We provide request examples in [research/library_usage.py](research/service_usage.py).
 
 #### Docker image
-Finally, we containerize the service by creating a Docker image:
+We can containerize our service by creating a Docker image:
 
 ```bash
 # create Docker image
@@ -143,10 +167,11 @@ docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
 
 Deployment will be easy once you have a working Docker image!
 
-## Create New Project
-The above project is a simple example for an NLP research idea and a resulting tool.
+## Creating a New Project
+The sample project included with the repo is a simple example of an NLP research idea and a resulting tool.
 
-To create an new empty project, pick a project directory and a name for the project's Python package, and run:
+To create an new empty project from the templates, 
+first pick a project directory and a name for the project's Python package, and run:
 
 `PROJ_DIR=my_project PKG_NAME=my_lib make new-project`
 
@@ -158,8 +183,10 @@ Here is a checklist to turn the new project into a fully functional tool:
 - [ ] implement a demo
 - [ ] implement service
 
-### New Demo
-Within a project, you can initialize a new demo as follows: <br>
+### Bootstrapping New Demos
+Many data science projects include one or more demos showcasing key ideas and functionalities.
+
+Once you have created a new project, you can initialize new demos as follows: <br>
 `DEMO_NAME=mydemo make new-demo`
 
 A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
