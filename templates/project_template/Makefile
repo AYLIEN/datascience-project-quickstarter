@@ -1,4 +1,4 @@
-PROJ_DIR ?= new-project
+PROJECT_DIR ?= new-project
 PKG_NAME ?= new_pkg
 PORT ?= 8000
 CONTAINER := PKG_NAME_
@@ -8,16 +8,17 @@ DEMO_NAME ?= new-demo
 # initialize a new project
 .PHONY: new-project
 new-project:
-	python bin/create_project.py \
-		--project-dir $(PROJ_DIR) \
+	python templates/create_project.py \
+		--project-dir $(PROJECT_DIR) \
 		--pkg-name $(PKG_NAME)
 
 
 # initialize a new demo within current project
 .PHONY: new-demo
 new-demo:
-	python bin/create_demo.py --dirname $(DEMO_NAME)
-
+	python templates/create_demo.py --dirname $(DEMO_NAME)
+	echo "Finished creating new demo: $(DEMO_NAME)"
+	echo "To run, do: cd demos/$(DEMO_NAME) && make run"
 
 .PHONY: dev
 dev:

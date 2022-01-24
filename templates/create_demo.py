@@ -19,12 +19,13 @@ def main(args):
     assert args.dirname.strip() != ""
 
     project_dir = Path(".")
-    template_dir = Path("resources/demo_template")
+    template_dir = Path("templates/demo_template")
     demo_dirname = args.dirname
     demo_dir = Path("demos") / demo_dirname
     if demo_dir.exists():
-        raise FileExistsError("This demo directory exists.")
-    demo_dir.mkdir()
+        raise FileExistsError(
+            f"The demo directory {demo_dir} already exists.")
+    demo_dir.mkdir(parents=True)
 
     with open("project.json") as f:
         pkg_name = json.load(f)["package"]

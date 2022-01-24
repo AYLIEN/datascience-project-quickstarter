@@ -1,4 +1,5 @@
-CONTAINER     ?= PKG_NAME-demo
+DEMO_NAME     ?= basename `pwd`
+CONTAINER     ?= `echo $(DEMO_NAME) | tr "_" "-"`-demo
 VERSION       ?= `cat VERSION`
 PORT		  ?= 8000
 
@@ -7,7 +8,7 @@ PORT		  ?= 8000
 run:
 	streamlit --log_level debug run \
 			  --server.port $(PORT) \
-			  --server.baseUrlPath PKG_NAME \
+			  --server.baseUrlPath $(DEMO_NAME) \
 		  	  demo.py
 
 

@@ -8,15 +8,16 @@ This template lets you set up a new project with a running streamlit demo and a 
 
 - [ ] add cherrypy service template instead of using `model-serving`
 - [ ] separate dev/prod dependencies
-- [ ] demo-specific requirements.txt files
-- [ ] `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
-- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so
+- [ ] add demo-specific requirements.txt files
+- [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
+- [ ] don't copy all of template Makefile to new project Makefiles
+- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so to show current best practices
 - [ ] make command for docker run (currently only mentioned in readme)
 
 Other ideas
 * separate and hide the templating code & resources more, e.g. all in a hidden folder
 
-The templating parts are currently these:
+The template components currently consist of:
 * [bin/create_project.py](bin/create_project.py)
 * [bin/create_demo.py](bin/create_demo.py)
 * [resources/project_template](resources/project_template)
@@ -29,21 +30,35 @@ The templating parts are currently these:
 (1) clone repo
 ```
 git clone https://github.com/AYLIEN/datascience-project-quickstarter
-cd datascience-project-quickstarter
 ```
+
+### Create a new project
 
 Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)), 
 Then bootstrap a new project
 ```
+cd datascience-project-quickstarter
 export PROJECT_NAME=my-test-project
+export PROJECT_DIR=../${PROJECT_NAME}
 
 # skip the next two lines if you prefer to create python environments in a different way
 conda create -n $PROJECT_NAME python=3.7
-
 conda activate $PROJECT_NAME
 
-# now create a new project
-PROJECT_NAME=$PROJECT_NAME make new-project
+# now create a new project called `$PROJECT_NAME` in `$PROJECT_DIR`
+PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
+```
+
+### Create a new demo
+We begin many projects by creating a proof-of-concept in a Streamlit demo. 
+Demos should be created in the `demos/` subdirectory of the project.
+```
+# go to project directory
+cd ${PROJECT_DIR}
+
+# create a new demo
+export DEMO_NAME=super-cool-demo
+DEMO_NAME=${DEMO_NAME} make new-demo
 ```
 
 

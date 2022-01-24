@@ -1,27 +1,29 @@
 PROJECT_NAME ?= test-project
-PROJ_DIR ?= $(PROJECT_NAME)
+PROJECT_DIR ?= $(PROJECT_NAME)
 PKG_NAME ?= `echo $(PROJECT_NAME) | tr "-" "_"`
 PORT ?= 8000
-CONTAINER := zs-classifier
+CONTAINER := $(PKG_NAME)
 VERSION ?= `cat VERSION`
-DEMO_NAME ?= new-demo
+DEMO_NAME ?= $(PROJECT_NAME)-demo
 
 
 # initialize a new project
 .PHONY: new-project
 new-project:
 	python templates/create_project.py \
-		--project-dir $(PROJ_DIR) \
+		--project-dir $(PROJECT_DIR) \
 		--pkg-name $(PKG_NAME)
-	cd $(PROJ_DIR)
-	pip install -r requirements.txt
+	cd $(PROJECT_DIR) && \
+	pip install -r requirements.txt && \
 	pip install -e .
-	echo "Finished creating project in directory: $(PROJ_DIR)"
+	echo "Finished creating project in directory: $(PROJECT_DIR)"
 
-# initialize a new demo within current project
+# initialize a new demo
 .PHONY: new-demo
 new-demo:
 	python templates/create_demo.py --dirname $(DEMO_NAME)
+	echo "Finished creating new demo: $(DEMO_NAME)"
+	echo "To run, do: cd demos/$(DEMO_NAME) && make run"
 
 # install locally
 .PHONY: dev
