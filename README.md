@@ -34,8 +34,7 @@ git clone https://github.com/AYLIEN/datascience-project-quickstarter
 
 ### Create a new project
 
-Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)), 
-Then bootstrap a new project
+Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html))
 ```
 cd datascience-project-quickstarter
 export PROJECT_NAME=my-test-project
@@ -44,7 +43,10 @@ export PROJECT_DIR=../${PROJECT_NAME}
 # skip the next two lines if you prefer to create python environments in a different way
 conda create -n $PROJECT_NAME python=3.7
 conda activate $PROJECT_NAME
+```
 
+Then bootstrap a new project
+```
 # now create a new project called `$PROJECT_NAME` in `$PROJECT_DIR`
 PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
 ```
