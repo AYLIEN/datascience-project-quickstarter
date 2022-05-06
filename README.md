@@ -2,20 +2,7 @@
 
 This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
 
-This template lets you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
-
-#### TODO
-
-- [ ] add cherrypy service template instead of using `model-serving`
-- [ ] separate dev/prod dependencies
-- [ ] add demo-specific requirements.txt files
-- [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
-- [ ] don't copy all of template Makefile to new project Makefiles
-- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so to show current best practices
-- [ ] make command for docker run (currently only mentioned in readme)
-
-Other ideas
-* separate and hide the templating code & resources more, e.g. all in a hidden folder
+The templates and commands here let you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
 
 The template components currently consist of:
 * [bin/create_project.py](bin/create_project.py)
@@ -32,20 +19,24 @@ The template components currently consist of:
 git clone https://github.com/AYLIEN/datascience-project-quickstarter
 ```
 
-### Create a new project
+### Creating a new project
 
-Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html))
+
+Clone this project:
 ```
 cd datascience-project-quickstarter
 export PROJECT_NAME=my-test-project
 export PROJECT_DIR=../${PROJECT_NAME}
+```
 
+Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
+```
 # skip the next two lines if you prefer to create python environments in a different way
 conda create -n $PROJECT_NAME python=3.7
 conda activate $PROJECT_NAME
 ```
 
-Then bootstrap a new project
+Then bootstrap a new datascience project:
 ```
 # now create a new project called `$PROJECT_NAME` in `$PROJECT_DIR`
 PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
@@ -62,7 +53,6 @@ cd ${PROJECT_DIR}
 export DEMO_NAME=super-cool-demo
 DEMO_NAME=${DEMO_NAME} make new-demo
 ```
-
 
 ## Project Structure
 
@@ -103,6 +93,8 @@ This directory contains executable scripts, usually written in Python or bash. T
 
 ## Example Project: Zero-shot Event Classification
 
+In addition to the templates included in this repo, we've also included an example data science project that works out of the box.
+
 #### New environment
 To use or work on this project, we first want to create a project-specific Python environment, let's call it `zsc`. <br>
 
@@ -122,7 +114,6 @@ python3.8 -m venv zsc
 source zsc/bin/activate
 ```
 
-
 #### Install
 Run `make dev`
 
@@ -137,7 +128,7 @@ pip install ./model-serving
 
 #### Using the example library
 
-This example shows how to use the `zs_classification` library to create a zero-shot text classifier.
+Using the `zs_classification` library to create a zero-shot text classifier:
 ```python
 from zs_classification.classifier import ZeroShotClassifier
 from zs_classification.vector_store import NaiveVectorStore
@@ -158,6 +149,8 @@ pprint(predictions)
 ```
 
 #### Using the example service
+
+We also include an example service to demonstrate exposing your library via a REST API.
 Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
 
 | Endpoint | Request Format | Explanation |
@@ -171,7 +164,9 @@ The requests have to follow a Protobuf schema defined in [schema.proto](schema.p
 
 We provide request examples in [research/library_usage.py](research/service_usage.py).
 
-#### Docker image
+## Docker image
+
+Deployment will be easy once you have a working Docker image!
 We can containerize our service by creating a Docker image:
 
 ```bash
@@ -182,7 +177,6 @@ make build
 docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
 ```
 
-Deployment will be easy once you have a working Docker image!
 
 ## Creating a New Project
 The sample project included with the repo is a simple example of an NLP research idea and a resulting tool.
@@ -207,3 +201,18 @@ Once you have created a new project, you can initialize new demos as follows: <b
 `DEMO_NAME=mydemo make new-demo`
 
 A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
+
+
+## TODO
+
+- [ ] add cherrypy service template instead of using `model-serving`
+- [ ] separate dev/prod dependencies
+- [ ] add demo-specific requirements.txt files
+- [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
+- [ ] don't copy all of template Makefile to new project Makefiles
+- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so to show current best practices
+- [ ] make command for docker run (currently only mentioned in readme)
+
+Other ideas
+* separate and hide the templating code & resources more, e.g. all in a hidden folder
+

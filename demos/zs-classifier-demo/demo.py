@@ -7,7 +7,6 @@ from copy import deepcopy
 from collections import defaultdict
 import streamlit as st
 import streamlit.components.v1 as components
-import streamlit.report_thread as ReportThread
 from streamlit.server.server import Server
 
 from zs_classification.classifier import ZeroShotClassifier
@@ -21,24 +20,15 @@ page_config = st.set_page_config(
 # MODEL = SentenceTransformer("paraphrase-mpnet-base-v2", device="cpu")
 
 def get_session_state():
-    session_id = ReportThread.get_report_ctx().session_id
-    session_info = Server.get_current()._get_session_info(session_id)
-
-    if session_info is None:
-        raise RuntimeError('Could not get Streamlit session object.')
-
-    # this session object
-    this_session = session_info.session
+    state = st.session_state
 
     # Initialize user state if session doesn't exist
-    if not hasattr(this_session, '_custom_session_state'):
-        user_state = {
-            "classifier": None,
-            "label_to_description": {},
-        }
-        this_session._custom_session_state = user_state
+    if not state.get('INIT', False):
+        state["classifier"] = None
+        state["label_to_description"] = {}
 
-    return this_session._custom_session_state
+    state['INIT'] = True
+    return state
 
 
 @st.cache(allow_output_mutation=True)
