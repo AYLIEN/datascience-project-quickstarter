@@ -7,8 +7,11 @@ The templates and commands here let you set up a new project with a running stre
 The template components currently consist of:
 * [bin/create_project.py](bin/create_project.py)
 * [bin/create_demo.py](bin/create_demo.py)
-* [resources/project_template](resources/project_template)
+* [resources/project_template/](resources/project_template)
 * [resources/demo_template](resources/demo_template)
+
+In addition to the templates for bootstrapping new project, this repo itself is an example of a datascience project, 
+demonstrating a zero-shot text classifier which runs out-of-the-box, with accompanying research notebooks and a streamlit demo. 
 
 -----
 
@@ -46,7 +49,7 @@ PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
 We begin many projects by creating a proof-of-concept in a Streamlit demo. 
 Demos should be created in the `demos/` subdirectory of the project.
 ```
-# go to project directory
+# go to project directory created in previous step
 cd ${PROJECT_DIR}
 
 # create a new demo
