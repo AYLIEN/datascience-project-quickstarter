@@ -1,4 +1,4 @@
-DEMO_NAME     ?= basename `pwd`
+DEMO_NAME     ?= `basename \`pwd\``
 CONTAINER     ?= `echo $(DEMO_NAME) | tr "_" "-"`-demo
 VERSION       ?= `cat VERSION`
 PORT		  ?= 8000
