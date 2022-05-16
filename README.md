@@ -29,13 +29,15 @@ Clone this project:
 ```
 cd datascience-project-quickstarter
 export PROJECT_NAME=my-test-project
+# this create the new project in the same parent dir as `datascience-project-quickstarter`, 
+# but you change directories and create it anywhere you like
 export PROJECT_DIR=../${PROJECT_NAME}
 ```
 
 Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
 ```
 # skip the next two lines if you prefer to create python environments in a different way
-conda create -n $PROJECT_NAME python=3.7
+conda create -n $PROJECT_NAME python=3.8
 conda activate $PROJECT_NAME
 ```
 
@@ -47,7 +49,7 @@ PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
 
 ### Create a new demo
 We begin many projects by creating a proof-of-concept in a Streamlit demo. 
-Demos should be created in the `demos/` subdirectory of the project.
+Demos should be created in the `demos/` subdirectory of the data-science project.
 ```
 # go to project directory created in previous step
 cd ${PROJECT_DIR}

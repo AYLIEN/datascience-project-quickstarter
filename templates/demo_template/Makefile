@@ -6,10 +6,11 @@ PORT		  ?= 8000
 
 .PHONY: run
 run:
-	streamlit --log_level debug run \
-			  --server.port $(PORT) \
-			  --server.baseUrlPath $(DEMO_NAME) \
-		  	  demo.py
+	streamlit \
+		run demo.py \
+		--logger.level debug \
+		--server.port $(PORT) \
+		--server.baseUrlPath $(DEMO_NAME)
 
 
 .PHONY: build
