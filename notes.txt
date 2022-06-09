@@ -1,0 +1,5 @@
+quickstarter -d . -p
+
+quickstart-demo --project . --demoname cool-demo
+
+quickstart-project 
