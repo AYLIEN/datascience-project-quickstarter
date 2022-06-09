@@ -79,7 +79,7 @@ The top-level structure of our projects usually looks like this:
 ├── VERSION
 ```
 
-An overview of each component of this template follows. We use our zero-shot classification project in [examples/aylien-zs-classifier](examples/zs-classifier) as an example.
+An overview of each component of this template follows. We use our zero-shot classification project in [examples/aylien-zs-classifier](examples/aylien-zs-classifier) as an example.
 
 #### The [`research/`](examples/aylien-zs-classifier/research) directory
 
