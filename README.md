@@ -54,13 +54,32 @@ quickstart-demo --project $PROJECT_DIR --name super-cool-demo
 ```
 It will appear in the `demos/` subdirectory of your data-science project.
 
+### Running the project's service
+A new project is already setup with a mock service that receives POST requests.  Start the service by simply running:
+```
+make run
+```
+
+### Building & running a Docker container
+Deploying your service will be easy once you have a working Docker image!
+Run this to containerize the service implemented in the project:
+```bash
+# create Docker image
+make build
+
+# run container locally
+docker run -p 8000:8000 -e --rm -it <image name>:0.1
+```
+
+
 ### Completing a project
 Here is a checklist to turn the new project into a fully functional tool:
 - [ ] implement your project's core functionality in the Python package
 - [ ] maintain dependencies in `requirements.txt`
 - [ ] implement a demo
 - [ ] implement service
-- [ ] write tests
+- [ ] build Docker image & make sure containerized service works afterwards (this often takes a few debugging cycles)
+- [ ] write tests for each new module in the Python package
 
 
 ## Project Structure
@@ -75,6 +94,7 @@ The top-level structure of our projects usually looks like this:
 ├── requirements.txt
 ├── demos/
 ├── research/
+├── resources/
 ├── setup.py
 ├── VERSION
 ```
@@ -96,14 +116,15 @@ This is the newest addition to our template. Over the last few years, amazing li
 
 Check out our example for zero-shot-classification: [demos/zs-classifier-demo](demos/zs-classifier-demo)
 
-#### The [`bin/`](examples/aylien-zs-classifier/bin) directory
+#### The `bin` directory
 This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing scripts that we keep separated from the python package modules for better clarity.
 
+#### The `resources` directory
+We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
 
 ## TODO
 
 - [ ] install `model-serving` and the quickstarter via PyPI
-- [ ] examples and description of `resources`
 - [ ] separate dev/prod dependencies
 - [ ] add demo-specific requirements.txt files
 - [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
