@@ -62,9 +62,7 @@ def main():
     write_file(setup_py_content, project_dir / 'setup.py')
 
     # Makefile
-    makefile_content = read_file(template_dir / 'Makefile')
-    # using placeholder {{PKG_NAME}} instead of PKG_NAME because PKG_NAME
-    # needs to remain a placeholder for "make init" command
+    makefile_content = read_file(template_dir / 'Makefile')    
     makefile_content = makefile_content.replace('{{PKG_NAME}}', args.libname)
     write_file(makefile_content, project_dir / 'Makefile')
 
@@ -74,7 +72,7 @@ def main():
     write_file(dockerfile_content, project_dir / 'Dockerfile')
 
     # TODO: make protobuf schema optional
-    
+
     # schema.proto
     # schema_content = read_file(template_dir / 'schema.proto')
     # schema_content = schema_content.replace('{{PKG_NAME}}', args.libname)
