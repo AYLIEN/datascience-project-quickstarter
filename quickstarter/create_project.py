@@ -47,10 +47,6 @@ def main():
     pkg_dir = project_dir / package_name
     template_dir = HERE / "templates" / "project"
 
-    print("HERE:", HERE)
-    print("PARENT:", HERE.parent)
-    print("template dir:", template_dir)
-
     if project_dir.exists():
         if input(f"Project directory '{project_dir}' already exists. Override? [yes/no] ") == "yes":
             shutil.rmtree(project_dir)
