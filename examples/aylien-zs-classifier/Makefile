@@ -15,7 +15,7 @@ test:
 	pytest aylien_zs_classifier
 	pycodestyle aylien_zs_classifier --exclude *_pb2.py
 
-
+# optional; if protobuf schema is used
 .PHONY: proto
 proto:
 	protoc --python_out=aylien_zs_classifier schema.proto

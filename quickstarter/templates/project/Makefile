@@ -16,6 +16,7 @@ test:
 	pycodestyle {{PKG_NAME}} --exclude *_pb2.py
 
 
+# optional; if protobuf schema is used
 .PHONY: proto
 proto:
 	protoc --python_out={{PKG_NAME}} schema.proto
