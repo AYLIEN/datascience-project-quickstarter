@@ -1,66 +1,70 @@
+
 # Data Science Project Quickstarter
 
-This is an opinionated template for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand.
+This is a tool for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand, from an opinionated template.
+The quickstarter  lets you set up a new project with the following components:
+* 📚 Python library
+* 📨 Service
+* ⚓ Docker container
+* ✨ Streamlit demos
 
-The templates and commands here let you set up a new project with a running streamlit demo and a production-ready `Dockerfile` in minutes.
+We also provide a few [examples](examples) of datascience projects that we bootstrapped with the quickstarter:
+* A [zero-shot text classifier](examples/zs_classifier) which runs out-of-the-box, with accompanying research notebooks and a streamlit demo.
+* (something else)
 
-The template components currently consist of:
-* [bin/create_project.py](bin/create_project.py)
-* [bin/create_demo.py](bin/create_demo.py)
-* [resources/project_template/](resources/project_template)
-* [resources/demo_template](resources/demo_template)
+## Quickstart
 
-In addition to the templates for bootstrapping new project, this repo itself is an example of a datascience project, 
-demonstrating a zero-shot text classifier which runs out-of-the-box, with accompanying research notebooks and a streamlit demo. 
-
------
-
-## Quickstart 
-
-(1) clone repo
+### Clone & install quickstarter
+(todo: replace this with `pip`)
 ```
 git clone https://github.com/AYLIEN/datascience-project-quickstarter
+cd datascience-project-quickstarter
+pip install .
 ```
 
 ### Creating a new project
 
-
-Clone this project:
+As an example, let's call our new project `cool-project`, and name the Python library associated with this  project `cool_library`. Let's say the project will live in `~/projects/cool-project`. Let's save these as variables:
 ```
-cd datascience-project-quickstarter
-export PROJECT_NAME=my-test-project
-# this create the new project in the same parent dir as `datascience-project-quickstarter`, 
-# but you change directories and create it anywhere you like
-export PROJECT_DIR=../${PROJECT_NAME}
+export PROJECT_NAME=cool-project
+export PROJECT_DIR=~/projects/cool-project
+export LIBNAME=cool_library
 ```
 
-Create and activate a new environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
+To create this project, use the installed `quickstart-project` command as follows:
+```
+quickstart-project --path $PROJECT_DIR --libname $LIBNAME
+```
+
+Create and activate a new project-specific environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
 ```
 # skip the next two lines if you prefer to create python environments in a different way
 conda create -n $PROJECT_NAME python=3.8
 conda activate $PROJECT_NAME
 ```
-
-Then bootstrap a new datascience project:
+Go to the new project and install it:
 ```
-# now create a new project called `$PROJECT_NAME` in `$PROJECT_DIR`
-PROJECT_NAME=${PROJECT_NAME} PROJECT_DIR=${PROJECT_DIR} make new-project
+cd $PROJECT_DIR && make dev
 ```
-
 ### Create a new demo
-We begin many projects by creating a proof-of-concept in a Streamlit demo. 
-Demos should be created in the `demos/` subdirectory of the data-science project.
+We begin many projects by creating a proof-of-concept in a Streamlit demo.
+Simply run this to create a new demo:
 ```
-# go to project directory created in previous step
-cd ${PROJECT_DIR}
+quickstart-demo --project $PROJECT_DIR --name super-cool-demo
+```
+It will appear in the `demos/` subdirectory of your data-science project.
 
-# create a new demo
-export DEMO_NAME=super-cool-demo
-DEMO_NAME=${DEMO_NAME} make new-demo
-```
+### Completing a project
+Here is a checklist to turn the new project into a fully functional tool:
+- [ ] implement your project's core functionality in the Python package
+- [ ] maintain dependencies in `requirements.txt`
+- [ ] implement a demo
+- [ ] implement service
+- [ ] write tests
+
 
 ## Project Structure
-
+Let's have a closer look at how projects created by our quickstarter are built.
 The top-level structure of our projects usually looks like this:
 ```
 <project directory>/
@@ -75,149 +79,32 @@ The top-level structure of our projects usually looks like this:
 ├── VERSION
 ```
 
-An overview of each component of this template follows.
+An overview of each component of this template follows. We use our zero-shot classification project in [examples/aylien-zs-classifier](examples/aylien-zs-classifier) as an example.
 
-#### The [`research/`](research) directory
+#### The [`research/`](examples/aylien-zs-classifier/research) directory
 
 In this directory, anything goes. The `research/` directory is the home of Jupyter notebooks and other exploratory analysis tools. This directory gives us the freedom to iterate quickly and break things, while still using git to keep track of the code and to facilitate easy sharing. Any code that is not ready for production, but that you still want to keep track of, can go into this directory.
 
-#### The Python package directory (our example: [`zs_classification/`](zs_classification))
+#### The Python package directory (for example: [`aylien_zs_classifier/`](examples/aylien-sz-classifier/aylien_zs_classifier))
 
 This is where the main source code of a project lives. We generally structure one project around one Python package. In early stages of a project we tend to prototype new features in notebooks or scripts in the `research/` directory. Once a new feature is ready to be used within the project, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (.py file) in the package, we write unit tests in a file with a consistent naming convention: e.g. test_classifier.py for the module classifier.py.
 
 The Python package also requires the `requirements.txt`, `setup.py` and `VERSION` files. Make sure to keep the dependencies in`requirements.txt` updated and depending on your deployment scenario, maintain the package version in the `VERSION` file.
 
-#### The [`demos/`](demos) directory
+#### The [`demos/`](examples/aylien-zs-classifier/demos) directory
 This is the newest addition to our template. Over the last few years, amazing libraries like streamlit have drastically reduced the effort required to make interactive demos of data science projects. Streamlit in particular is fast-becoming an essential library for anyone building python-based prototypes. In  the `demos/` directory we put self-contained demos that are expected to have their own `requirements.txt` and `make run` commands. Interactive demos are one of the main ways for data scientists to communicate their work to the rest of an organization.
 
 Check out our example for zero-shot-classification: [demos/zs-classifier-demo](demos/zs-classifier-demo)
 
-#### The [`bin/`](bin) directory
+#### The [`bin/`](examples/aylien-zs-classifier/bin) directory
 This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing scripts that we keep separated from the python package modules for better clarity.
-
-
-## Example Project: Zero-shot Event Classification
-
-In addition to the templates included in this repo, we've also included an example data science project that works out of the box.
-
-#### New environment
-To use or work on this project, we first want to create a project-specific Python environment, let's call it `zsc`. <br>
-
-Option 1 with Anaconda:
-```bash
-# Create new environment
-conda create -n zsc python=3.8
-# Activate new environment
-conda activate zsc
-```
-
-Option 2 with Venv:
-```bash
-# Create new environment
-python3.8 -m venv zsc
-# Activate new environment
-source zsc/bin/activate
-```
-
-#### Install
-Run `make dev`
-
-This will install the dependencies in `requirements.txt` and the `zs_classification` library in development mode.
-
-Currently we also need install `model-serving`:
-
-```
-git clone git@github.com:AYLIEN/model-serving.git
-pip install ./model-serving
-```
-
-#### Using the example library
-
-Using the `zs_classification` library to create a zero-shot text classifier:
-```python
-from zs_classification.classifier import ZeroShotClassifier
-from zs_classification.vector_store import NaiveVectorStore
-from sentence_transformers import SentenceTransformer
-from pprint import pprint
-
-
-model = SentenceTransformer("paraphrase-mpnet-base-v2", device="cpu")
-classifier = ZeroShotClassifier(model=model, vector_store=NaiveVectorStore())
-
-labels = ["fire", "water", "wind"]
-descriptions = ["fire", "water", "wind"]
-classifier.add_labels(labels, descriptions)
-
-snippets = ["flame", "ocean", "hurricane"]
-predictions = classifier.predict(snippets, output_scores=True)
-pprint(predictions)
-```
-
-#### Using the example service
-
-We also include an example service to demonstrate exposing your library via a REST API.
-Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
-
-| Endpoint | Request Format | Explanation |
-|---|---|---|
-| `/add` | `{"label": "<label>", "description": "<description>"}` | Adding a new label |
-| `/classify` | At minimum: `{"text": "<text>"}`<br>Optional settings: `{"text": "<text>", "threshold": 0.1, "topk": 10}` | Classify a text snippet |
-| `/remove` | `{"label": "<label>"}` | Remove a label |
-| `/reset` | (no data) | Delete all labels |
-
-The requests have to follow a Protobuf schema defined in [schema.proto](schema.proto).
-
-We provide request examples in [research/library_usage.py](research/service_usage.py).
-
-## Docker image
-
-Deployment will be easy once you have a working Docker image!
-We can containerize our service by creating a Docker image:
-
-```bash
-# create Docker image
-make build
-
-# run container locally
-docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
-```
-
-
-## Creating a New Project
-The sample project included with the repo is a simple example of an NLP research idea and a resulting tool.
-
-To create an new empty project from the templates, 
-first pick a project directory and a name for the project's Python package, and run:
-
-`PROJ_DIR=my_project PKG_NAME=my_lib make new-project`
-
-This will create an empty new project from scratch, including all of the default components.
-
-Here is a checklist to turn the new project into a fully functional tool:
-- [ ] implement your project's core functionality in the Python package
-- [ ] maintain dependencies in `requirements.txt`
-- [ ] implement a demo
-- [ ] implement service
-
-### Bootstrapping New Demos
-Many data science projects include one or more demos showcasing key ideas and functionalities.
-
-Once you have created a new project, you can initialize new demos as follows: <br>
-`DEMO_NAME=mydemo make new-demo`
-
-A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
 
 
 ## TODO
 
-- [ ] add cherrypy service template instead of using `model-serving`
+- [ ] install `model-serving` and the quickstarter via PyPI
+- [ ] examples and description of `resources`
 - [ ] separate dev/prod dependencies
 - [ ] add demo-specific requirements.txt files
 - [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
-- [ ] don't copy all of template Makefile to new project Makefiles
-- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so to show current best practices
 - [ ] make command for docker run (currently only mentioned in readme)
-
-Other ideas
-* separate and hide the templating code & resources more, e.g. all in a hidden folder
-

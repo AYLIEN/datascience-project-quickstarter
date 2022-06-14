@@ -3,12 +3,16 @@ from setuptools import setup
 with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
-with open("VERSION") as f:
-    version = f.read().strip()
-
 setup(
-    name="zs_classification",
-    version=version,
-    packages=["zs_classification"],
+    name="quickstarter",
+    version=0.1,
+    packages=["quickstarter"],
+    entry_points={
+        "console_scripts": [
+            "quickstart-demo=quickstarter.create_demo:main",
+            "quickstart-project=quickstarter.create_project:main",
+        ]
+    },    
+    include_package_data=True,
     install_requires=requirements
 )

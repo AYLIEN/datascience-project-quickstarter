@@ -1,0 +1,13 @@
+*.swp
+*.swo
+*.pyc
+*.gz
+*.pkl
+*.npy
+*.sqlite
+*.egg-info
+.pytest_cache
+.DS_Store
+.ipynb_checkpoints
+.deps
+resources
