@@ -10,14 +10,14 @@ Run `conda activate <env-name>` or `source <env-path>/bin/activate`
 #### Install library
 Run `make dev`
 
-## New Demo
+### New Demo
 
 Within in a project, you can initialize a new demo as follows: <br>
 `quickstart-demo --project . --name super-cool-demo`
 
 A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
 
-## Create Another Project
+### Create Another Project
 
 Run `quickstart-project --path <new project path> --libname <new library name>`    
 
