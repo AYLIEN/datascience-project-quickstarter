@@ -1,7 +1,5 @@
 import requests
 import json
-from aylien_zs_classifier import schema_pb2 as schema
-import google.protobuf.json_format as proto_json
 from pprint import pprint
 
 

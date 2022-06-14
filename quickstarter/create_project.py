@@ -73,10 +73,12 @@ def main():
     dockerfile_content = dockerfile_content.replace('{{PKG_NAME}}', args.libname)
     write_file(dockerfile_content, project_dir / 'Dockerfile')
 
+    # TODO: make protobuf schema optional
+    
     # schema.proto
-    schema_content = read_file(template_dir / 'schema.proto')
-    schema_content = schema_content.replace('{{PKG_NAME}}', args.libname)
-    write_file(schema_content, project_dir / 'schema.proto')
+    # schema_content = read_file(template_dir / 'schema.proto')
+    # schema_content = schema_content.replace('{{PKG_NAME}}', args.libname)
+    # write_file(schema_content, project_dir / 'schema.proto')
 
     # files that are simply copied unmodified
     shutil.copy(template_dir / 'requirements.txt', project_dir)
