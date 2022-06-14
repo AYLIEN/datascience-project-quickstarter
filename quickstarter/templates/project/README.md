@@ -10,22 +10,21 @@ Run `conda activate <env-name>` or `source <env-path>/bin/activate`
 #### Install library
 Run `make dev`
 
-## Create New Project
+## New Demo
 
-To create an new empty project, pick a project directory and a name for the project's Python package, and run:
+Within in a project, you can initialize a new demo as follows: <br>
+`quickstart-demo --project . --name super-cool-demo`
 
-`PROJ_DIR=my_project PKG_NAME=my_lib make new-project`
+A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
 
-This will create an empty new project from scratch, including all of the default components.
+## Create Another Project
 
+Run `quickstart-project --path <new project path> --libname <new library name>`    
+
+### Completing a project
 Here is a checklist to turn the new project into a fully functional tool:
 - [ ] implement your project's core functionality in the Python package
 - [ ] maintain dependencies in `requirements.txt`
 - [ ] implement a demo
 - [ ] implement service
-
-### New Demo
-Within a project, you can initialize a new demo as follows: <br>
-`DEMO_NAME=mydemo make new-demo`
-
-A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
+- [ ] write tests

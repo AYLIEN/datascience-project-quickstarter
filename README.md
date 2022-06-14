@@ -60,7 +60,7 @@ Here is a checklist to turn the new project into a fully functional tool:
 - [ ] maintain dependencies in `requirements.txt`
 - [ ] implement a demo
 - [ ] implement service
-- [ ] write unit tests
+- [ ] write tests
 
 
 ## Project Structure
@@ -100,14 +100,11 @@ Check out our example for zero-shot-classification: [demos/zs-classifier-demo](d
 This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing scripts that we keep separated from the python package modules for better clarity.
 
 
-
-
-
 ## TODO
 
 - [ ] install `model-serving` and the quickstarter via PyPI
+- [ ] examples and description of `resources`
 - [ ] separate dev/prod dependencies
 - [ ] add demo-specific requirements.txt files
 - [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
-- [ ] rename `zs_classification` to e.g. `aylien_zs_classification` or so to show current best practices
 - [ ] make command for docker run (currently only mentioned in readme)
