@@ -19,13 +19,20 @@ def write_file(content, path):
         f.write(content)
 
 
+def read_replace_write(inpath, replacements, outpath):
+    content = read_file(inpath)
+    for k, v in replacements.items():
+        content = content.replace(k, v)
+    write_file(content, outpath)
+
+
 def main():
     args = parse_args()
 
     assert args.name.strip() != ""
 
     project_dir = Path(args.project)
-    template_dir = HERE.parent / "templates" / "demo"
+    template_dir = HERE / "templates" / "demo"
     demo_name = args.name
     demo_dir = project_dir /  Path("demos") / demo_name
     if demo_dir.exists():
@@ -36,20 +43,15 @@ def main():
     with open(project_dir / "project.json") as f:
         pkg_name = json.load(f)["package"]
 
-    # Makefile
-    makefile_content = read_file(template_dir / "Makefile")
-    makefile_content = makefile_content.replace("{{DEMO_NAME}}", demo_name)
-    write_file(makefile_content, demo_dir / "Makefile")
-
     # Dockerfile
-    dockerfile_content = read_file(template_dir / "Dockerfile")
-    dockerfile_content = dockerfile_content.replace("{{PKG_NAME}}", pkg_name)
-    dockerfile_content = dockerfile_content.replace(
-        "{{DEMO_NAME}}", demo_name
+    read_replace_write(
+        inpath=template_dir / "Dockerfile",
+        replacements={"{{PKG_NAME}}": pkg_name, "{{DEMO_NAME}}": demo_name},
+        outpath=demo_dir / "Dockerfile"
     )
-    write_file(dockerfile_content, demo_dir / "Dockerfile")
 
     # files that are simply copied unmodified
+    shutil.copy(template_dir / "Makefile", demo_dir)
     shutil.copy(template_dir / "README.md", demo_dir)
     shutil.copy(template_dir / "VERSION", demo_dir)
     shutil.copy(template_dir / "demo.py", demo_dir)

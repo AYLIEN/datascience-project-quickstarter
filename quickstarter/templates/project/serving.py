@@ -5,23 +5,24 @@ def run_app():
     """
     This is a mock app, showing how to make simple requests.
     """
-
     counter = 0
 
     def reverse_text(text):
         text = "".join(list(reversed(text)))
-        return {"text": text}
+        response = {"text": text}
+        return response
 
     def increment_count():
+        nonlocal counter
         counter += 1
-        return {"count": counter}
+        response = {"count": counter}
+        return response
 
     def process_reverse_text():
         return FlaskAppWrapper.process_json(reverse_text)
 
     def process_increment_count():
         return FlaskAppWrapper.process_json(increment_count)
-
 
     routes = [
         {
@@ -31,7 +32,7 @@ def run_app():
         },
         {
             "endpoint": "/count",
-            "callable": increment_count,
+            "callable": process_increment_count,
             "methods": ["POST"]
         },
     ]

@@ -1,4 +1,3 @@
-import argparse
 from aylien_model_serving.app_factory import FlaskAppWrapper
 from aylien_zs_classifier.classifier import ZeroShotClassifier
 from aylien_zs_classifier.vector_store import NaiveVectorStore

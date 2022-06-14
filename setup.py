@@ -12,6 +12,7 @@ setup(
             "quickstart-demo=quickstarter.create_demo:main",
             "quickstart-project=quickstarter.create_project:main",
         ]
-    },
+    },    
+    include_package_data=True,
     install_requires=requirements
 )
