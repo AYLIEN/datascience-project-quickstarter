@@ -7,6 +7,18 @@ Make sure you're currently in this demo directory:
 
 `cd demos/first-demo`
 
+
+Create a new environment for the demo (optional but recommended if the demo becomes complex!)
+
+```
+conda create -n <env-name> python=3.8 # if using Anaconda, or use your preferred method
+conda activate <env-name>
+```
+
+Install demo requirements
+
+`make dev`
+
 Run the demo
 
 `make run`

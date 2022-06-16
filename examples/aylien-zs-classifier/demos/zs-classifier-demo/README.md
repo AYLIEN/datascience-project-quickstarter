@@ -3,9 +3,26 @@
 We built a demo for zero-shot classification using [Streamlit](https://streamlit.io/) which is great for creating simple demo apps quickly.
 
 
+### Demo
+
+This demo is implemented with [Streamlit](https://streamlit.io/) which is great for creating simple demo apps quickly.
+
+
 Make sure you're currently in this demo directory:
 
-`cd demos/zs-classifier-demo`
+`cd demos/first-demo`
+
+
+Create a new environment for the demo (optional but recommended if the demo becomes complex!)
+
+```
+conda create -n <env-name> python=3.8 # if using Anaconda, or use your preferred method
+conda activate <env-name>
+```
+
+Install demo requirements
+
+`make dev`
 
 Run the demo
 

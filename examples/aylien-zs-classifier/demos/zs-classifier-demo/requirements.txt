@@ -1,3 +1,4 @@
+streamlit>=1.2.0
 pycodestyle>=2.6.0
 aylien_model_serving @ git+ssh://git@github.com/AYLIEN/model-serving@2.0
 sentence-transformers>=2.1.0

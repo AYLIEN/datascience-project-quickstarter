@@ -10,6 +10,7 @@ dev:
 	pip install -e .
 	pip install -r requirements.txt
 
+
 .PHONY: test
 test:
 	pytest {{PKG_NAME}}

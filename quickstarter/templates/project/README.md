@@ -17,6 +17,8 @@ Within in a project, you can initialize a new demo as follows: <br>
 
 A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
 
+You can checkout the README generated in the new demo directory for further guidance.
+
 ### Create Another Project
 
 Run `quickstart-project --path <new project path> --libname <new library name>`    

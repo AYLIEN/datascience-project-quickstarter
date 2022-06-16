@@ -4,6 +4,11 @@ VERSION       ?= `cat VERSION`
 PORT		  ?= 8000
 
 
+.PHONY: dev
+dev:	
+	pip install -r requirements.txt
+
+
 .PHONY: run
 run:
 	streamlit \
