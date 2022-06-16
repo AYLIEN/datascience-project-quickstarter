@@ -1,20 +1,21 @@
-
 # Data Science Project Quickstarter
 
-This is a tool for bootstrapping real-world datascience projects that are maintainable, deployable, and easy to understand, from an opinionated template.
+This is a tool for bootstrapping real-world datascience projects that are easy to understand, 
+easy to deploy, easy to customise, and easy to maintain.
+
 The quickstarter  lets you set up a new project with the following components:
 * 📚 Python library
 * 📨 Service
 * ⚓ Docker container
-* ✨ Streamlit demos
+* ✨ Streamlit demo(s)
 
-We also provide a few [examples](examples) of datascience projects that we bootstrapped with the quickstarter:
+This repo also contains a few [examples](examples) of datascience projects that we bootstrapped with the quickstarter:
 * A [zero-shot text classifier](examples/zs_classifier) which runs out-of-the-box, with accompanying research notebooks and a streamlit demo.
 * (something else)
 
 ## Quickstart
 
-### Clone & install quickstarter
+### Installation
 (todo: replace this with `pip`)
 ```
 git clone https://github.com/AYLIEN/datascience-project-quickstarter
@@ -82,7 +83,8 @@ Here is a checklist to turn the new project into a fully functional tool:
 - [ ] write tests for each new module in the Python package
 
 
-## Project Structure
+## Data Science Project Structure
+
 Let's have a closer look at how projects created by our quickstarter are built.
 The top-level structure of our projects usually looks like this:
 ```
@@ -99,28 +101,31 @@ The top-level structure of our projects usually looks like this:
 ├── VERSION
 ```
 
-An overview of each component of this template follows. We use our zero-shot classification project in [examples/aylien-zs-classifier](examples/aylien-zs-classifier) as an example.
+An overview of each component of this template follows. Let's use the zero-shot classification project in [examples/aylien-zs-classifier](examples/aylien-zs-classifier) as an example.
 
 #### The [`research/`](examples/aylien-zs-classifier/research) directory
 
 In this directory, anything goes. The `research/` directory is the home of Jupyter notebooks and other exploratory analysis tools. This directory gives us the freedom to iterate quickly and break things, while still using git to keep track of the code and to facilitate easy sharing. Any code that is not ready for production, but that you still want to keep track of, can go into this directory.
 
+We don't like to use branches for non-production code because stuff tends to get lost in unmerged branches. So we commit research code directly to the `main` branch, but we put it in the `research/` directory. 
+We only create branches for production features. 
+
 #### The Python package directory (for example: [`aylien_zs_classifier/`](examples/aylien-sz-classifier/aylien_zs_classifier))
 
-This is where the main source code of a project lives. We generally structure one project around one Python package. In early stages of a project we tend to prototype new features in notebooks or scripts in the `research/` directory. Once a new feature is ready to be used within the project, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (.py file) in the package, we write unit tests in a file with a consistent naming convention: e.g. test_classifier.py for the module classifier.py.
+This is where the main source code of a project lives. We generally structure one project around one Python package. In early stages of a project we tend to prototype new features in notebooks or scripts in the `research/` directory. Once a new feature is ready to be used within the project, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (`.py` file) in the package, we write unit tests in a file with a consistent naming convention: e.g. `test_classifier.py` for the module `classifier.py`.
 
 The Python package also requires the `requirements.txt`, `setup.py` and `VERSION` files. Make sure to keep the dependencies in`requirements.txt` updated and depending on your deployment scenario, maintain the package version in the `VERSION` file.
 
 #### The [`demos/`](examples/aylien-zs-classifier/demos) directory
-This is the newest addition to our template. Over the last few years, amazing libraries like streamlit have drastically reduced the effort required to make interactive demos of data science projects. Streamlit in particular is fast-becoming an essential library for anyone building python-based prototypes. In  the `demos/` directory we put self-contained demos that are expected to have their own `requirements.txt` and `make run` commands. Interactive demos are one of the main ways for data scientists to communicate their work to the rest of an organization.
+This is the newest addition to our template. Over the last few years, amazing libraries like [streamlit](https://streamlit.io/) have drastically reduced the effort required to make interactive demos of data science projects. Streamlit in particular is fast-becoming an essential library for anyone building python-based prototypes. In  the `demos/` directory we put self-contained demos that are expected to have their own `requirements.txt` and `make run` commands. Interactive demos are one of the main ways for data scientists to communicate their work to the rest of an organization.
 
 Check out our example for zero-shot-classification: [demos/zs-classifier-demo](demos/zs-classifier-demo)
 
 #### The `bin` directory
-This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing scripts that we keep separated from the python package modules for better clarity.
+This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing or shell scripts that we keep separated from the python package modules for better clarity.
 
-#### The `resources` directory
-We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
+#### The `resources/` directory
+We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a `Makefile` command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
 
 ## TODO
 
