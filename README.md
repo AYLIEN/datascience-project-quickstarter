@@ -107,26 +107,31 @@ Data science projects are different than other software projects, because they o
 Some engineering teams prefer to take prototypes from research and data-science teams and re-implement them from scratch, which is totally ok. However, we believe that 
 it is good practice for researchers and data science teams to strive to produce code libraries that can be used in production, meaning that code is well-tested, and follows good API design principles. 
 
-Below we explain how we structure our projects to support both exploratory research and production-ready code in the same repo. We have used this pattern effectively in 
-many real-world projects. 
+Below we explain how we structure our projects to support both exploratory research and production-ready code in the same repo. We have used this simple pattern effectively in 
+many real-world projects, ranging from research papers with accompanying codebases, to production services wrapping ML-models which handle millions of requests per day. 
 
 
 #### The [`research/`](examples/aylien-zs-classifier/research) directory
 
-In this directory, anything goes. The `research/` directory is the home of Jupyter notebooks and other exploratory analysis tools. This directory gives us the freedom to iterate quickly and break things, while still using git to keep track of the code and to facilitate easy sharing. Any code that is not ready for production, but that you still want to keep track of, can go into this directory.
+In this directory, anything goes. The `research/` directory is the home of Jupyter notebooks and other exploratory analysis tools. This directory gives us the freedom to iterate quickly and break things, while still using git to keep track of the code and to facilitate easy sharing and collaboration. Any code that is not ready for production, but that you still want to keep track of, can go into this directory.
+If multiple members of the team are working on different ideas in parallel, just create multiple subdirectories in `research/` such as 
+`research/GAN-graph-based-meta-reinforcement-learning/...` and `research/bayesian-flow-multi-horizon-hypercubes/...`.
 
 We don't like to use branches for non-production code because ideas tend to get lost in unmerged branches. So we commit research code directly to the `main` branch, but we put it in the `research/` directory. 
-We only create branches for production features. 
+We only create branches for production features (see below). 
 
 #### The Python package directory (for example: [`aylien_zs_classifier/`](examples/aylien-sz-classifier/aylien_zs_classifier))
 
-This is where the main source code of a project lives. We generally structure one project around one Python package. In early stages of a project we tend to prototype new features in notebooks or scripts in the `research/` directory. Once a new feature is ready to be used within the project, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (`.py` file) in the package, we write unit tests in a file with a consistent naming convention: e.g. `test_classifier.py` for the module `classifier.py`.
-Once the project is mature, the code in this library should be ready for production, meaning that it can be integrated into a larger system, shared on PyPI, or shipped in a docker container. 
+This is where the main source code of a project lives. We generally structure each project around one Python package. In the early stages of a project, we tend to prototype new features in notebooks or scripts in the `research/` directory. Once we're confident that we have something working and useful, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (`.py` file) in the package, we write unit tests in a file with a consistent naming convention: e.g. `test_classifier.py` for the module `classifier.py`.
+Code that is added to the main Python package should be submitted in a branch, and ideally reviewed by at least one other person. In our projects, multiple review cycles are common, and we somethimes even end up moving an idea 
+to the `research/` directory if it's cool, but somehow not well-suited or relevant to the primary usecase of the project. 
 
-The Python package also requires the `requirements.txt`, `setup.py` and `VERSION` files. Make sure to keep the dependencies in`requirements.txt` updated and depending on your deployment scenario, maintain the package version in the `VERSION` file.
+Once the project is mature, the code in the main Python package should be ready for production, meaning that it can be integrated into a larger system, shared on PyPI, or shipped in a docker container that exposes a service. 
+
+The main Python package also requires the `requirements.txt`, `setup.py` and `VERSION` files. Make sure to keep the dependencies in`requirements.txt` updated and depending on your deployment scenario, maintain the package version in the `VERSION` file.
 
 #### The [`demos/`](examples/aylien-zs-classifier/demos) directory
-This is the newest addition to our template. Over the last few years, amazing libraries like [streamlit](https://streamlit.io/) have drastically reduced the effort required to make interactive demos of data science projects. Streamlit in particular is fast-becoming an essential library for anyone building python-based prototypes. In  the `demos/` directory we put self-contained demos that are expected to have their own `requirements.txt` and `make run` commands. Interactive demos are one of the main ways for data scientists to communicate their work to the rest of an organization.
+This is the newest addition to our template. Over the last few years, amazing libraries like [streamlit](https://streamlit.io/) have drastically reduced the effort required to make interactive demos of data science projects. Streamlit in particular is fast-becoming an essential library for anyone building Python-based prototypes. In  the `demos/` directory we put self-contained demos that are expected to have their own `requirements.txt` and `make run` commands. Interactive demos are one of the main ways for data scientists to communicate their work to the rest of an organization.
 
 Check out our example for zero-shot-classification: [demos/zs-classifier-demo](demos/zs-classifier-demo)
 
