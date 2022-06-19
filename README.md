@@ -103,16 +103,25 @@ The top-level structure of our projects usually looks like this:
 
 An overview of each component of this template follows. Let's use the zero-shot classification project in [examples/aylien-zs-classifier](examples/aylien-zs-classifier) as an example.
 
+Data science projects are different than other software projects, because they often result in both a body of exploratory research _and_ a codebase that is used in production. 
+Some engineering teams prefer to take prototypes from research and data-science teams and re-implement them from scratch, which is totally ok. However, we believe that 
+it is good practice for researchers and data science teams to strive to produce code libraries that can be used in production, meaning that code is well-tested, and follows good API design principles. 
+
+Below we explain how we structure our projects to support both exploratory research and production-ready code in the same repo. We have used this pattern effectively in 
+many real-world projects. 
+
+
 #### The [`research/`](examples/aylien-zs-classifier/research) directory
 
 In this directory, anything goes. The `research/` directory is the home of Jupyter notebooks and other exploratory analysis tools. This directory gives us the freedom to iterate quickly and break things, while still using git to keep track of the code and to facilitate easy sharing. Any code that is not ready for production, but that you still want to keep track of, can go into this directory.
 
-We don't like to use branches for non-production code because stuff tends to get lost in unmerged branches. So we commit research code directly to the `main` branch, but we put it in the `research/` directory. 
+We don't like to use branches for non-production code because ideas tend to get lost in unmerged branches. So we commit research code directly to the `main` branch, but we put it in the `research/` directory. 
 We only create branches for production features. 
 
 #### The Python package directory (for example: [`aylien_zs_classifier/`](examples/aylien-sz-classifier/aylien_zs_classifier))
 
 This is where the main source code of a project lives. We generally structure one project around one Python package. In early stages of a project we tend to prototype new features in notebooks or scripts in the `research/` directory. Once a new feature is ready to be used within the project, we add it to an existing or new module of the Python package from where it can be imported easily. For each module (`.py` file) in the package, we write unit tests in a file with a consistent naming convention: e.g. `test_classifier.py` for the module `classifier.py`.
+Once the project is mature, the code in this library should be ready for production, meaning that it can be integrated into a larger system, shared on PyPI, or shipped in a docker container. 
 
 The Python package also requires the `requirements.txt`, `setup.py` and `VERSION` files. Make sure to keep the dependencies in`requirements.txt` updated and depending on your deployment scenario, maintain the package version in the `VERSION` file.
 
@@ -122,7 +131,7 @@ This is the newest addition to our template. Over the last few years, amazing li
 Check out our example for zero-shot-classification: [demos/zs-classifier-demo](demos/zs-classifier-demo)
 
 #### The `bin` directory
-This directory contains executable scripts, usually written in Python or bash. These are usually on-off data processing or shell scripts that we keep separated from the python package modules for better clarity.
+This directory contains executable scripts, usually written in Python or bash. These are usually one-off data processing or shell scripts that we keep separated from the python package modules for better clarity.
 
 #### The `resources/` directory
 We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a `Makefile` command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
