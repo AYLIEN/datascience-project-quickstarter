@@ -63,7 +63,7 @@ def main():
     shutil.copy(template_dir / "demo.py", demo_dir)
 
     print(f"Finished creating new demo: {args.name}")
-    print(f"To run, do: cd demos/{args.name} && make run")
+    print(f"To run, do: cd {demo_dir} && make run")
 
 
 def parse_args():
