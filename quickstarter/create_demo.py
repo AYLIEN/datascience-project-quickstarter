@@ -2,6 +2,7 @@ import argparse
 import os
 import shutil
 import json
+import re
 from pathlib import Path
 
 
@@ -40,8 +41,13 @@ def main():
             shutil.rmtree(demo_dir)
     demo_dir.mkdir(parents=True)
 
-    with open(project_dir / "project.json") as f:
-        pkg_name = json.load(f)["package"]
+    try:
+        with open(project_dir / "project.json") as f:
+            pkg_name = json.load(f)["package"]
+    except FileNotFoundError as e:
+        print(f'`project.json` was not found in {project_dir}')
+        pkg_name = re.sub('-', '_', demo_name)
+        print(f'Initializing Dockerfile for demo with Python package name: {pkg_name}')
 
     # Dockerfile
     read_replace_write(
