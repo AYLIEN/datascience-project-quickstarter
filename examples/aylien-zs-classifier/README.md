@@ -68,8 +68,6 @@ Use `make run` to get the service running locally. You can now create and intera
 | `/remove` | `{"label": "<label>"}` | Remove a label |
 | `/reset` | (no data) | Delete all labels |
 
-The requests have to follow a Protobuf schema defined in [schema.proto](schema.proto).
-
 We provide request examples in [research/service_examples.py](research/service_examples.py).
 
 ## Docker image
