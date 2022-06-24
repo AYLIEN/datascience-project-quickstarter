@@ -6,26 +6,19 @@ The project implements a very simple zero-shot classifier that can classify text
 #### New environment
 To use or work on this project, we first want to create a project-specific Python environment, let's call it `zsc`. <br>
 
-With Anaconda:
+We like to use Anaconda/Miniconda but feel free to use other options:
 ```bash
 # Create new environment
 conda create -n zsc python=3.8
 # Activate new environment
 conda activate zsc
 ```
-
-Option 2 with Venv:
-```bash
-# Create new environment
-python3.8 -m venv zsc
-# Activate new environment
-source zsc/bin/activate
 ```
 
 #### Install
 Run `make dev`
 
-This will install the dependencies in `requirements.txt` and the `zs_classification` library in development mode.
+This will install the dependencies in `requirements.txt` and the `aylien_zs_classifier` library in development mode.
 
 Currently we also need install `model-serving`:
 
