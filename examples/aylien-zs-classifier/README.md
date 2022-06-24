@@ -13,7 +13,6 @@ conda create -n zsc python=3.8
 # Activate new environment
 conda activate zsc
 ```
-```
 
 #### Install
 Run `make dev`
