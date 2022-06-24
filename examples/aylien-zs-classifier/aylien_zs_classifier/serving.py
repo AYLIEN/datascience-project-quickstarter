@@ -1,5 +1,6 @@
 from aylien_model_serving.app_factory import FlaskAppWrapper
 from aylien_zs_classifier.classifier import ZeroShotClassifier
+from aylien_zs_classifier.classifier import EmptyTextException
 from aylien_zs_classifier.vector_store import NaiveVectorStore
 from aylien_zs_classifier.vector_store import EmptyVectorStoreException
 from sentence_transformers import SentenceTransformer
@@ -14,15 +15,19 @@ def run_app():
 
     def reset():
         classifier.reset()
-        return {}
+        return {"errors": 0}
 
     def add_label(label, description):
-        classifier.add_labels([label], [description])
-        return {}
+        try:
+            classifier.add_labels([label], [description])
+            response = {"error": 0}
+        except EmptyTextException as e:
+            response = {"error": str(e)}
+        return response
 
     def remove_label(label):
         classifier.remove_labels([label])
-        return {}
+        return {"error": 0}
 
     def classify(text, threshold=0.0, topk=1):
         texts = [text]
@@ -33,11 +38,16 @@ def run_app():
             labels, scores = zip(*scored_labels)
             response = {
                 "labels": list(labels),
-                "scores": list(scores)
+                "scores": list(scores),
+                "error": 0
             }
         except EmptyVectorStoreException as e:
             response = {
-                "error": "EmptyVectorStoreException"
+                "error": str(e)
+            }
+        except EmptyTextException as e:
+            response = {
+                "error": str(e)
             }
         return response
 

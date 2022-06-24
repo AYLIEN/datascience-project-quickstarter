@@ -34,7 +34,7 @@ git clone git@github.com:AYLIEN/model-serving.git
 pip install ./model-serving
 ```
 
-#### Using the example library
+#### Using the library
 
 Using the `aylien_zs_classifier` library to create a zero-shot text classifier:
 ```python
@@ -56,7 +56,7 @@ predictions = classifier.predict(snippets, output_scores=True)
 pprint(predictions)
 ```
 
-#### Using the example service
+#### Using the service
 
 We also include an example service to demonstrate exposing your library via a REST API.
 Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
@@ -70,7 +70,7 @@ Use `make run` to get the service running locally. You can now create and intera
 
 The requests have to follow a Protobuf schema defined in [schema.proto](schema.proto).
 
-We provide request examples in [research/library_usage.py](research/service_usage.py).
+We provide request examples in [research/service_examples.py](research/service_examples.py).
 
 ## Docker image
 
@@ -84,3 +84,7 @@ make build
 # run container locally
 docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
 ```
+
+## Demo
+
+Check out the demo [here](demos/zs-classifier-demo). 

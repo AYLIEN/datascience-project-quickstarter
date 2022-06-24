@@ -79,17 +79,13 @@ class NaiveVectorStore(VectorStore):
         """
         Remove vectors from store corresponding to given ids.
         """
+        deleted_ids = set(ids)
+        kept_indices = [
+            self.id_to_idx[id] for id in self.ids if id not in deleted_ids
+        ]
+        new_matrix = self.matrix.index_select(0, torch.tensor(kept_indices))
         idx_to_id = dict((idx, id) for id, idx in self.id_to_idx.items())
-        deleted_indices = set([self.id_to_idx[id] for id in ids])
-        new_matrix = [
-            self.matrix[i] for i in range(len(self.matrix))
-            if i not in deleted_indices
-        ]
-        new_matrix = torch.stack(new_matrix, dim=0)
-        new_ids = [
-            idx_to_id[i] for i in range(len(self.matrix))
-            if i not in deleted_indices
-        ]
+        new_ids = [idx_to_id[i] for i in kept_indices]
         self.ids = new_ids
         self.id_to_idx = dict((id, i) for i, id in enumerate(new_ids))
         self.matrix = new_matrix

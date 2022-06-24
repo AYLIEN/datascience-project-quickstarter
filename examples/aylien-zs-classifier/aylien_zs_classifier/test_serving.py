@@ -18,7 +18,7 @@ example_classify = {"text": "It's windy today."}
 
 example_remove = {"label": "WIND"}
 
-example_reset = {}
+empty_vec_msg = "Vector store is empty, needs to be populated before querying."
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -43,7 +43,20 @@ def test_client_works(client):
 
 def test_classify_without_add(client):
     response = post_json(client, "/classify", example_classify)
-    assert response["error"] == "EmptyVectorStoreException"
+    assert response["error"] == empty_vec_msg
+
+
+def test_add(client):
+    for req in examples_add:
+        response = post_json(client, "/add", req)
+        assert response["error"] == 0
+
+
+def test_add_empty(client):
+    response = post_json(client, "/add", {"label": "", "description": "text"})
+    assert response["error"] == "At least one label is an empty text."
+    response = post_json(client, "/add", {"label": "text", "description": ""})
+    assert response["error"] == "At least one description is an empty text."
 
 
 def test_classify(client):
@@ -53,16 +66,16 @@ def test_classify(client):
     assert response["labels"][0] == "WIND"
 
 
-def test_remove_label(client):
+def test_remove(client):
     for req in examples_add:
         post_json(client, "/add", req)
     response = post_json(client, "/remove", example_remove)
-    assert response["error"] == "0"
+    assert response["error"] == 0
 
 
 def test_reset(client):
     for req in examples_add:
         post_json(client, "/add", req)
-    post_json(client, "/reset", example_reset)
+    post_json(client, "/reset", {})
     response = post_json(client, "/classify", example_classify)
-    assert response["error"] == "EmptyVectorStoreException"
+    assert response["error"] == empty_vec_msg

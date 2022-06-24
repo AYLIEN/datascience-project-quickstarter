@@ -1,3 +1,7 @@
+class EmptyTextException(Exception):
+    pass
+
+
 class ZeroShotClassifier:
     def __init__(
         self,
@@ -15,6 +19,12 @@ class ZeroShotClassifier:
         self.v.reset()
 
     def add_labels(self, labels, descriptions):
+        if any([t.strip() == "" for t in labels]):
+            raise EmptyTextException("At least one label is an empty text.")
+        if any([t.strip() == "" for t in descriptions]):
+            raise EmptyTextException(
+                "At least one description is an empty text."
+            )
         label_embeddings = self.model.encode(
             descriptions, convert_to_tensor=True
         )
@@ -30,6 +40,11 @@ class ZeroShotClassifier:
             output_scores=False,
             topk=None
     ):
+        if any([t.strip() == "" for t in input_texts]):
+            raise EmptyTextException(
+                "At least one input text is empty."
+            )
+
         input_embeddings = self.model.encode(
             input_texts, convert_to_tensor=True
         )
