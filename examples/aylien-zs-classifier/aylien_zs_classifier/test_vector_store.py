@@ -43,10 +43,15 @@ class TestNaiveVectorStore:
             neighbors = v.neighbors(query)[0]
             assert neighbors[0][0] == id
 
-    def test_knn(self):
+    def test_topk(self):
         v = NaiveVectorStore()
         v.add(self.ids.copy(), torch.clone(self.vectors))
         query = self.vectors[0].unsqueeze(0)
         for k in [1, 2, 3]:
             neighbors = v.neighbors(query, k=k)[0]
             assert len(neighbors) == k
+        # get all items, not just top-k
+        neighbors = v.neighbors(query, k=None)[0]
+        assert len(neighbors) == len(self.ids)
+        neighbors = v.neighbors(query, k=-1)[0]
+        assert len(neighbors) == len(self.ids)

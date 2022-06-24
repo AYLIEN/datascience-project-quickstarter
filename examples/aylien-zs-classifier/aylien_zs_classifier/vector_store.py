@@ -43,7 +43,7 @@ class NaiveVectorStore(VectorStore):
             raise EmptyVectorStoreException(
                 "Vector store is empty, needs to be populated before querying."
             )
-
+        k = None if k == -1 else k
         S = pytorch_cos_sim(query_vectors, self.matrix)
         outputs = []
         for i in range(len(query_vectors)):

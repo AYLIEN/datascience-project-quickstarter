@@ -87,4 +87,4 @@ docker run -p 8000:8000 -e --rm -it zs-classifier:0.1
 
 ## Demo
 
-Check out the demo [here](demos/zs-classifier-demo). 
+Check out the demo for this project [here](demos/zs-classifier-demo) where you can create and interact with a classifier on a UI.
