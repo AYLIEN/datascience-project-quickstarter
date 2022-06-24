@@ -54,6 +54,18 @@ classifier.add_labels(labels, descriptions)
 snippets = ["flame", "ocean", "hurricane"]
 predictions = classifier.predict(snippets, output_scores=True)
 pprint(predictions)
+# output looks like this:
+"""
+[[('fire', 0.7852495908737183),
+  ('wind', 0.31472715735435486),
+  ('water', 0.25439903140068054)],
+ [('water', 0.5859522819519043),
+  ('wind', 0.3676087260246277),
+  ('fire', 0.22406277060508728)],
+ [('wind', 0.48003238439559937),
+  ('water', 0.2777974009513855),
+  ('fire', 0.2622990310192108)]]
+"""
 ```
 
 #### Using the service
