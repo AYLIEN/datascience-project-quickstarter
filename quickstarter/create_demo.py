@@ -59,6 +59,7 @@ def main():
     # files that are simply copied unmodified
     shutil.copy(template_dir / "Makefile", demo_dir)
     shutil.copy(template_dir / "README.md", demo_dir)
+    shutil.copy(template_dir / "requirements.txt", demo_dir)
     shutil.copy(template_dir / "VERSION", demo_dir)
     shutil.copy(template_dir / "demo.py", demo_dir)
 
