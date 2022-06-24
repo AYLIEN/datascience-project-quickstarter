@@ -28,7 +28,7 @@ pip install ./model-serving
 
 #### Using the library
 
-Using the `aylien_zs_classifier` library to create a zero-shot text classifier:
+Using the `aylien_zs_classifier` library, you can create and use a zero-shot text classifier:
 ```python
 from aylien_zs_classifier.classifier import ZeroShotClassifier
 from aylien_zs_classifier.vector_store import NaiveVectorStore
