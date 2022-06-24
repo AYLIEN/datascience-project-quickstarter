@@ -58,7 +58,7 @@ pprint(predictions)
 
 #### Using the service
 
-We also include an example service to demonstrate exposing your library via a REST API.
+We also include a service to expose this library via a REST API.
 Use `make run` to get the service running locally. You can now create and interact with a classifier via post requests:
 
 | Endpoint | Request Format | Explanation |
@@ -68,7 +68,7 @@ Use `make run` to get the service running locally. You can now create and intera
 | `/remove` | `{"label": "<label>"}` | Remove a label |
 | `/reset` | (no data) | Delete all labels |
 
-We provide request examples in [research/service_examples.py](research/service_examples.py).
+We put together some examples for interacting with the service: [research/service_examples.py](research/service_examples.py).
 
 ## Docker image
 
