@@ -23,6 +23,9 @@ cd datascience-project-quickstarter
 pip install .
 ```
 
+After installation finishes, two new `quickstart-*` commands are available:
+(1) `quickstart-project`
+(2) `quickstart-demo`
 ### Creating a new project
 
 As an example, let's call our new project `cool-project`, and name the Python library associated with this  project `cool_library`. Let's say the project will live in `~/projects/cool-project`. Let's save these as variables:
@@ -49,6 +52,7 @@ cd $PROJECT_DIR && make dev
 ```
 ### Create a new demo
 We begin many projects by creating a proof-of-concept in a Streamlit demo.
+Demos live inside a project.
 Simply run this to create a new demo:
 ```
 quickstart-demo --project $PROJECT_DIR --name super-cool-demo
@@ -56,7 +60,7 @@ quickstart-demo --project $PROJECT_DIR --name super-cool-demo
 It will appear in the `demos/` subdirectory of your data-science project.
 
 ### Running the project's service
-A new project is already setup with a mock service that receives POST requests.  Start the service by simply running:
+New projects are already setup with a mock service that receives POST requests.  Start the service by simply running:
 ```
 make run
 ```
