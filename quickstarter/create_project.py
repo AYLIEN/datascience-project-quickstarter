@@ -118,6 +118,23 @@ def main():
     with open(project_dir / "project.json", "w") as f:
         f.write(json.dumps({"package": args.libname}))
 
+    print(
+        f"""
+        
+        Finished bootstrapping a new project at: {args.path}, 
+        The python library is called {args.libname}
+        To install your project, do: `cd {args.path} && make dev`
+        (you probably want to create a new virtual environment first though.)
+        
+        To run the web service, do: `make run`
+        To run the tests, do: `make test`
+        
+        The datascience quickstarter is maintained at https://github.com/AYLIEN/datascience-project-quickstarter/,
+        we are happy to accept your feedback and pull-requests.
+        Have a nice day :-)
+        """
+    )
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
