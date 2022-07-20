@@ -1,2 +1,2 @@
+model_serving>=2.0.0
 pycodestyle>=2.6.0
-aylien_model_serving @ git+ssh://git@github.com/AYLIEN/model-serving@2.0
