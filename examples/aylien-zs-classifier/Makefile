@@ -3,6 +3,7 @@ CONTAINER := aylien_zs_classifier
 VERSION ?= `cat VERSION`
 NUM_WORKERS ?= 1
 LOG_LEVEL ?= DEBUG
+DEMO_NAME ?= new-demo
 
 
 .PHONY: dev
@@ -10,10 +11,18 @@ dev:
 	pip install -e .
 	pip install -r requirements.txt
 
+
+.PHONY: demo
+demo:
+	@python -m quickstarter.create_demo --name $(DEMO_NAME)
+	make run --directory demos/$(DEMO_NAME)
+
+
 .PHONY: test
 test:
 	pytest aylien_zs_classifier
 	pycodestyle aylien_zs_classifier --exclude *_pb2.py
+
 
 # optional; if protobuf schema is used
 .PHONY: proto
