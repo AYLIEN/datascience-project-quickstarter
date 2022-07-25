@@ -11,6 +11,12 @@ dev:
 	pip install -r requirements.txt
 
 
+.PHONY: demo
+demo:
+	@python -m quickstarter.create_demo --name $(DEMO_NAME)
+	make run --directory demos/$(DEMO_NAME)
+
+
 .PHONY: test
 test:
 	pytest {{PKG_NAME}}

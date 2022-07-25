@@ -10,27 +10,21 @@ from pathlib import Path
 HERE = Path(os.path.abspath(__file__)).parent
 
 
+class NoProjectException(Exception):
+    pass
+
+
 def main():
     args = parse_args()
 
-    if args.project is None:
-        project_dir = None
-        current_dir = Path.cwd()
-        if utils.is_quickstarter_project(current_dir):
-            if input(
-                f"You're in the project {current_dir.name}. "
-                f"Want to create a new demo in {current_dir.name}/demos? [y/n] "
-            ) == "y":
-                project_dir = current_dir
-        if project_dir is None:
-            project_dir = Path(input(
-                "Please select an existing project directory to create a demo for: "
-            ))
+    current_dir = Path.cwd()
+    if not utils.is_quickstarter_project(current_dir):
+        raise NoProjectException(
+            f"{current_dir} is not a (quickstarter-)project directory."
+            "You need to be in a project directory to create a demo."
+        )
     else:
-        project_dir = Path(args.project)
-
-    if not project_dir.exists():
-        raise FileNotFoundError(f"Project directory {project_dir} not found.")
+        project_dir = current_dir
 
     if args.name is None:
         demo_name = input(
@@ -69,17 +63,17 @@ def main():
     shutil.copy(template_dir / "demo.py", demo_dir)
 
     print(f"Finished creating new demo: {demo_name}")
-    print(f"To run, do: cd {demo_dir} && make run")
+    print(f"To run, do: cd demos/{demo_name} && make run")
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project",
-        help="path to project directory to which the new demo should belong"
-    )
-    parser.add_argument(
         "--name",
         help="name of the demo; used as directory name"
     )
     return parser.parse_args()
+
+
+if __name__ == '__main__':
+    main()
