@@ -24,9 +24,7 @@ cd datascience-project-quickstarter
 pip install .
 ```
 
-After installation finishes, two new `quickstart-*` commands are available:
- 1. `quickstart-project`
- 2. `quickstart-demo`
+After installation finishes, the new command `quickstart` will be available.
 
 ### Creating a new project
 
