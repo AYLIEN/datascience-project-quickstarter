@@ -1,3 +1,4 @@
+
 # Data Science Project Quickstarter
 
 This is a tool for bootstrapping real-world datascience projects that are easy to understand,
@@ -24,23 +25,20 @@ pip install .
 ```
 
 After installation finishes, two new `quickstart-*` commands are available:
-(1) `quickstart-project`
-(2) `quickstart-demo`
+ 1. `quickstart-project`
+ 2. `quickstart-demo`
+
 ### Creating a new project
 
-As an example, let's call our new project `cool-project`, and name the Python library associated with this  project `cool_library`. Let's say the project will live in `~/projects/cool-project`. Let's save these as variables:
-```
-export PROJECT_NAME=cool-project
-export PROJECT_DIR=~/projects/cool-project
-export LIBNAME=cool_library
-```
+To start a new project, simply type `quickstart` and you will be guided through the process.
 
-To create this project, use the installed `quickstart-project` command as follows:
+You can also provide all required arguments directly, e.g.:
 ```
-quickstart-project --path $PROJECT_DIR --libname $LIBNAME
+quickstart --path ~/projects/cool-project --libname cool_library
 ```
+This will create a project in `~/projects/cool-project` , including a Python package/library named `cool_library`.
 
-Create and activate a new project-specific environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
+Next, create and activate a new project-specific environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
 ```
 # skip the next two lines if you prefer to create python environments in a different way
 conda create -n $PROJECT_NAME python=3.8
@@ -53,14 +51,19 @@ cd $PROJECT_DIR && make dev
 ### Create a new demo
 We begin many projects by creating a proof-of-concept in a Streamlit demo.
 Demos live inside a project.
-Simply run this to create a new demo:
+Simply run:
 ```
-quickstart-demo --project $PROJECT_DIR --name super-cool-demo
+make demo DEMO_NAME=cool-demo
 ```
-It will appear in the `demos/` subdirectory of your data-science project.
+this will create new demo called `cool-demo` in the `demos/` subdirectory of your new data-science project and will immediately start the demo in your browser!
+
+Within the demo directory `demos/cool-demo` you can develop the demo (script: `demos/cool-demo/demo.py`) and run it with:
+```
+make run
+```
 
 ### Running the project's service
-New projects are already setup with a mock service that receives POST requests.  Start the service by simply running:
+New projects are already setup with a mock service that receives POST requests.  Back in your project directory, start the service by simply running:
 ```
 make run
 ```
@@ -144,11 +147,3 @@ This directory contains executable scripts, usually written in Python or bash. T
 
 #### The `resources/` directory
 We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a `Makefile` command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
-
-## TODO
-
-- [ ] install `model-serving` and the quickstarter via PyPI
-- [ ] separate dev/prod dependencies
-- [ ] add demo-specific requirements.txt files
-- [ ] (optional) `bin/evaluate.py` and `make evaluate` for zero-shot classifier?
-- [ ] make command for docker run (currently only mentioned in readme)

@@ -9,10 +9,9 @@ setup(
     packages=["quickstarter"],
     entry_points={
         "console_scripts": [
-            "quickstart-demo=quickstarter.create_demo:main",
-            "quickstart-project=quickstarter.create_project:main",
+            "quickstart=quickstarter.create_project:main",
         ]
-    },    
+    },
     include_package_data=True,
     install_requires=requirements
 )
