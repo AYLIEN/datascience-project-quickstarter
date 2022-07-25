@@ -32,9 +32,9 @@ To start a new project, simply type `quickstart` and you will be guided through 
 
 You can also provide all required arguments directly, e.g.:
 ```
-quickstart --path ~/projects/cool-project --libname cool_library
+quickstart --path cool-project --libname cool_library
 ```
-This will create a project in `~/projects/cool-project` , including a Python package/library named `cool_library`.
+This will create a project in `cool-project` , including a Python package/library named `cool_library`.
 
 Next, create and activate a new project-specific environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
 ```
@@ -44,7 +44,7 @@ conda activate cool-project
 ```
 Go to the new project and install it:
 ```
-cd $PROJECT_DIR && make dev
+cd cool-project && make dev
 ```
 ### Create a new demo
 We begin many projects by creating a proof-of-concept in a Streamlit demo.
