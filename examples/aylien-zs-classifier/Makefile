@@ -21,7 +21,7 @@ demo:
 .PHONY: test
 test:
 	pytest aylien_zs_classifier
-	pycodestyle aylien_zs_classifier --exclude *_pb2.py
+	flake8 bin aylien_zs_classifier --exclude *_pb2.py
 
 
 # optional; if protobuf schema is used
