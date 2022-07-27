@@ -20,7 +20,7 @@ demo:
 .PHONY: test
 test:
 	pytest {{PKG_NAME}}
-	pycodestyle {{PKG_NAME}} --exclude *_pb2.py
+	flake8 {{PKG_NAME}} --exclude *_pb2.py
 
 
 # optional; if protobuf schema is used

@@ -1,2 +1,2 @@
 model_serving>=2.0.0
-pycodestyle>=2.6.0
+flake8>=4.0.1
