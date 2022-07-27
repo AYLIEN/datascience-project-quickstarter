@@ -1,12 +1,7 @@
 import pytest
 import json
-
-from aylien_model_serving.app_factory import FlaskAppWrapper
-
 from aylien_zs_classifier.serving import run_app
-from aylien_zs_classifier.classifier import ZeroShotClassifier
-from aylien_zs_classifier.vector_store import NaiveVectorStore
-from sentence_transformers import SentenceTransformer
+
 
 examples_add = [
     {"label": "WIND", "description": "wind"},
