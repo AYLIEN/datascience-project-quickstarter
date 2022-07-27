@@ -55,19 +55,21 @@ readline.set_completer(complete_path)
 
 def is_quickstarter_project(project_dir):
     return all([
-        (project_dir / "README.md").exists(),
-        (project_dir / "Dockerfile").exists(),
-        (project_dir / "Makefile").exists(),
-        (project_dir / "project.json").exists(),
-        (project_dir / "setup.py").exists(),
-        (project_dir / "requirements.txt").exists(),
-        (project_dir / "VERSION").exists(),
+        (project_dir / fname).exists() for fname in [
+            "README.md",
+            "Dockerfile",
+            "project.json",
+            "setup.py",
+            "requirements.txt",
+            "VERSION"
+        ]
     ])
 
 
 def override_old_project(project_dir):
     if input(
-        f"Project directory '{project_dir}' already exists. Override? [yes/no] "
+        "Project directory '{project_dir}' already exists. "
+        "Override? [yes/no] "
     ) == "yes":
         if is_quickstarter_project(project_dir):
             shutil.rmtree(project_dir)
