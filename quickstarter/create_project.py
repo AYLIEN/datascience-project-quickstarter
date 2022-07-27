@@ -24,7 +24,8 @@ def main():
 
     if args.libname is None:
         package_name = input(
-            "Please name your python package (e.g. 'aylien_zs_classification'): "
+            "Please name your python package "
+            "(e.g. 'aylien_zs_classification'): "
         )
         print("Python package name:", package_name)
     else:
@@ -113,7 +114,7 @@ def main():
         To run the web service, do: `make run`
         To run the tests, do: `make test`
 
-        The datascience quickstarter is maintained at https://github.com/AYLIEN/datascience-project-quickstarter/,
+        The datascience quickstarter is maintained at: https://github.com/AYLIEN/datascience-project-quickstarter
         we are happy to accept your feedback and pull-requests.
         Have a nice day :-)
         """

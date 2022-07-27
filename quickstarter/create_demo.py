@@ -36,7 +36,9 @@ def main():
     template_dir = HERE / "templates" / "demo"
     demo_dir = project_dir / Path("demos") / demo_name
     if demo_dir.exists():
-        if input(f"Demo directory '{demo_dir}' already exists. Override? [yes/no] ") == "yes":
+        if input(
+            f"Demo directory '{demo_dir}' already exists. Override? [yes/no] "
+        ) == "yes":
             shutil.rmtree(demo_dir)
     demo_dir.mkdir(parents=True)
 
@@ -46,7 +48,10 @@ def main():
     except FileNotFoundError:
         print(f'`project.json` was not found in {project_dir}')
         pkg_name = re.sub('-', '_', demo_name)
-        print(f'Initializing Dockerfile for demo with Python package name: {pkg_name}')
+        print(
+            "Initializing Dockerfile for demo with "
+            f"Python package name: {pkg_name}"
+        )
 
     # Dockerfile
     utils.read_replace_write(
