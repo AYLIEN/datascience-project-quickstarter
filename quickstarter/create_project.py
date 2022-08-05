@@ -42,6 +42,7 @@ def main():
     (project_dir / "bin").mkdir()
     (project_dir / "resources").mkdir()
     (project_dir / "research").mkdir()
+    (project_dir / "examples").mkdir()
     pkg_dir.mkdir()
 
     # Readme
@@ -98,6 +99,12 @@ def main():
     shutil.copy(template_dir / "requirements.txt", project_dir)
     shutil.copy(template_dir / "VERSION", project_dir)
     shutil.copy(template_dir / ".gitignore", project_dir)
+    shutil.copy(
+        template_dir / "example_request.json", project_dir / "examples"
+    )
+    shutil.copy(
+        template_dir / "example_requests.py", project_dir / "examples"
+    )
     utils.write_file("", pkg_dir / "__init__.py")
 
     with open(project_dir / "project.json", "w") as f:
