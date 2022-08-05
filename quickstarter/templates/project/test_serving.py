@@ -1,8 +1,5 @@
 import pytest
 import json
-
-from aylien_model_serving.app_factory import FlaskAppWrapper
-
 from {{PKG_NAME}}.serving import run_app
 
 

@@ -3,6 +3,7 @@ CONTAINER := {{PKG_NAME}}
 VERSION ?= `cat VERSION`
 NUM_WORKERS ?= 1
 DEMO_NAME ?= new-demo
+LOG_LEVEL ?= DEBUG
 
 
 .PHONY: dev
@@ -33,6 +34,17 @@ proto:
 .PHONY: run
 run:
 	gunicorn -b:$(PORT) '{{PKG_NAME}}.serving:run_app()' --log-level=$(LOG_LEVEL)
+
+
+# service must be running, i.e. start "make run" first
+.PHONY: example-request-reverse
+example-request-reverse:
+	curl -i -H "Content-Type: application/json" -X POST --data "@./examples/example_request.json" "http://localhost:8000/reverse"
+
+
+.PHONY: example-request-count
+example-request-count:
+	curl -i -H "Content-Type: application/json" -X POST --data {} "http://localhost:8000/count"
 
 
 # build docker container
