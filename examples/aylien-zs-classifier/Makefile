@@ -36,6 +36,17 @@ run:
 	gunicorn -b:$(PORT) 'aylien_zs_classifier.serving:run_app()' --log-level=$(LOG_LEVEL)
 
 
+# service must be running, i.e. start "make run" first
+.PHONY: example-request-add
+example-request-add:
+	curl -i -H "Content-Type: application/json" -X POST --data "@./examples/example_request_add.json" "http://localhost:8000/add"
+
+
+.PHONY: example-request-classify
+example-request-classify:
+	curl -i -H "Content-Type: application/json" -X POST --data "@./examples/example_request_classify.json" "http://localhost:8000/classify"
+
+
 # build docker container
 .PHONY: build
 build:

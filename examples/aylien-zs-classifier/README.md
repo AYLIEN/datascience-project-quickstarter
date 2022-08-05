@@ -72,7 +72,9 @@ Use `make run` to get the service running locally. You can now create and intera
 | `/remove` | `{"label": "<label>"}` | Remove a label |
 | `/reset` | (no data) | Delete all labels |
 
-We put together some examples for interacting with the service: [research/service_examples.py](research/service_examples.py).
+You can check if the service is working by running `make example-request-add` and `make-request-classify`.
+
+We also put together some more examples for interacting with the service: [examples/service_examples.py](examples/service_examples.py).
 
 ## Docker image
 
