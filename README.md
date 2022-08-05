@@ -11,7 +11,7 @@ The quickstarter  lets you set up a new project with the following components:
 
 This repo also contains a few [examples](examples) of datascience projects that we bootstrapped with the quickstarter:
 * A [zero-shot text classifier](examples/aylien-zs-classifier) which runs out-of-the-box, with accompanying research notebooks and a streamlit demo.
-* (something else)
+
 
 ## Quickstart
 
