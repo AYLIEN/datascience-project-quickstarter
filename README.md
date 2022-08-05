@@ -70,7 +70,7 @@ The default service includes two routes as toy examples: `/reverse` which takes 
 make example-request-count
 make example-request-reverse
 ```
-or by using the [python script](examples/example_requests.py) which shows how to send requests and receive responses as a client:
+or by using the [python script](quickstarter/templates/project/example_requests.py) which shows how to send requests and receive responses as a client:
 ```
 python examples/example_requests.py
 ```
