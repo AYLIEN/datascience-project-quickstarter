@@ -11,6 +11,7 @@ setup(
     long_description_content_type="text/markdown",
     readme="README.md",
     packages=["quickstarter"],
+    data_files=["LICENSE", "VERSION", "README.md"],
     entry_points={
         "console_scripts": [
             "quickstart=quickstarter.create_project:main",

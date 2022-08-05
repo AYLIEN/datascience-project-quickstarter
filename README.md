@@ -16,11 +16,8 @@ This repo also contains a few [examples](examples) of datascience projects that 
 ## Quickstart
 
 ### Installation
-(todo: replace this with `pip`)
 ```
-git clone https://github.com/AYLIEN/datascience-project-quickstarter
-cd datascience-project-quickstarter
-pip install .
+pip install quickstarter
 ```
 
 After installation finishes, the new command `quickstart` will be available.
