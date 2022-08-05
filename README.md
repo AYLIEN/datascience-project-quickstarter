@@ -1,4 +1,3 @@
-
 # Data Science Project Quickstarter
 
 This is a tool for bootstrapping real-world datascience projects that are easy to understand,
@@ -66,6 +65,16 @@ New projects are already setup with a mock service that receives POST requests. 
 make run
 ```
 
+The default service includes two routes as toy examples: `/reverse` which takes a `text` argument and `/count` with no arguments. Once the service is running, you try out sending requests, e.g. using
+```
+make example-request-count
+make example-request-reverse
+```
+or by using the [python script](examples/example_requests.py) which shows how to send requests and receive responses as a client:
+```
+python examples/example_requests.py
+```
+
 ### Building & running a Docker container
 Deploying your service will be easy once you have a working Docker image!
 Run this to containerize the service implemented in the project:
@@ -76,6 +85,8 @@ make build
 # run container locally
 docker run -p 8000:8000 -e --rm -it <image name>:0.1
 ```
+
+You can interact with the containerized service in the same way as earlier, e.g. by running `python examples/example_requests.py`.
 
 
 ### Completing a project
@@ -146,9 +157,8 @@ This directory contains executable scripts, usually written in Python or bash. T
 #### The `resources/` directory
 We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a `Makefile` command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
 
-### About 
+### About
 
-The datascience project quickstarter was concieved of and implemented by Demian Gholipour Ghalandari and Chris Hokamp. 
+The datascience project quickstarter was concieved of and implemented by Demian Gholipour Ghalandari and Chris Hokamp.
 Aishwarya Radhakrishnan provided feedback and code review, and created the current version of the model-serving library.
 Many of the ideas in this template are based on John Glover's excellent approach to ml-ops and productionization of research work, in particular the use of Makefiles to expose the main entrypoints to projects.
-
