@@ -1,4 +1,3 @@
-
 # Data Science Project Quickstarter
 
 This is a tool for bootstrapping real-world datascience projects that are easy to understand,
@@ -161,4 +160,4 @@ The datascience project quickstarter was conceived of and implemented by Demian 
 Aishwarya Radhakrishnan provided feedback and code review, and created the current version of the model-serving library.
 Many of the ideas in this template are based on John Glover's excellent approach to ml-ops and productionization of research work, in particular the use of Makefiles to expose the main entrypoints to projects.
 
-![Aylien Labs Logo](vis/aylien-labs-logo.png)
+![Aylien Labs Logo](vis/aylien-labs-logo-small.png)
