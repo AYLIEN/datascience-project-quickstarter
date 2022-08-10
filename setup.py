@@ -4,9 +4,9 @@ with open("VERSION") as f:
     version = f.read().strip()
 
 setup(
-    name="quickstarter",
+    name="datascience-quickstarter",
     version=version,
-    description="A tool for quick-starting new datascience projects, used by the research team at AYLIEN.",
+    description="A tool for quick-starting new datascience projects, build by AYLIEN Labs.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     readme="README.md",

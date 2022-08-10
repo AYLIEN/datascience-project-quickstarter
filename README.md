@@ -1,3 +1,4 @@
+
 # Data Science Project Quickstarter
 
 This is a tool for bootstrapping real-world datascience projects that are easy to understand,
@@ -17,7 +18,7 @@ This repo also contains a few [examples](examples) of datascience projects that 
 
 ### Installation
 ```
-pip install quickstarter
+pip install datascience-quickstarter
 ```
 
 After installation finishes, the new command `quickstart` will be available.
@@ -159,3 +160,5 @@ We usually store any large files required in a project such as model binaries or
 The datascience project quickstarter was conceived of and implemented by Demian Gholipour Ghalandari and Chris Hokamp.
 Aishwarya Radhakrishnan provided feedback and code review, and created the current version of the model-serving library.
 Many of the ideas in this template are based on John Glover's excellent approach to ml-ops and productionization of research work, in particular the use of Makefiles to expose the main entrypoints to projects.
+
+![Aylien Labs Logo](vis/aylien-labs-logo.png)
