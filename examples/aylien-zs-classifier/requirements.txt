@@ -1,3 +1,4 @@
+datascience-quickstarter==1.0.0
 model-serving==2.0.1
 flake8==3.8.0
 sentence-transformers>=2.1.0
