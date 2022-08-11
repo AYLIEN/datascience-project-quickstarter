@@ -1,2 +1,3 @@
-model_serving>=2.0.0
-flake8>=4.0.1
+model-serving==2.0.1
+flake8==3.8.0
+streamlit>=1.2.0
