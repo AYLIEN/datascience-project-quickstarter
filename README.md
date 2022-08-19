@@ -42,19 +42,6 @@ Go to the new project and install it:
 ```
 cd cool-project && make dev
 ```
-### Create a new demo
-We begin many projects by creating a proof-of-concept in a Streamlit demo.
-Demos live inside a project.
-Simply run:
-```
-make demo DEMO_NAME=cool-demo
-```
-this will create new demo called `cool-demo` in the `demos/` subdirectory of your new data-science project and will immediately start the demo in your browser!
-
-Within the demo directory `demos/cool-demo` you can develop the demo (script: `demos/cool-demo/demo.py`) and run it with:
-```
-make run
-```
 
 ### Running the project's service
 New projects are already setup with a mock service that receives POST requests.  Back in your project directory, start the service by simply running:
@@ -72,7 +59,7 @@ or by using the [python script](quickstarter/templates/project/example_requests.
 python examples/example_requests.py
 ```
 
-### Building & running a Docker container
+#### Containerize the service with Docker
 Deploying your service will be easy once you have a working Docker image!
 Run this to containerize the service implemented in the project:
 ```bash
@@ -84,6 +71,28 @@ docker run -p 8000:8000 -e --rm -it <image name>:0.1
 ```
 
 You can interact with the containerized service in the same way as earlier, e.g. by running `python examples/example_requests.py`.
+
+
+### Create a new demo
+We begin many projects by creating a proof-of-concept in a Streamlit demo.
+Demos live inside a project.
+Simply run:
+```
+make demo DEMO_NAME=cool-demo
+```
+this will create new demo called `cool-demo` in the `demos/` subdirectory of your new data-science project and will immediately start the demo in your browser!
+
+Within the demo directory `demos/cool-demo` you can develop the demo (script: `demos/cool-demo/demo.py`) and run it with:
+```
+make run
+```
+
+#### Containerize demo with Docker
+You can also containerize the whole demo using Docker! Within the demo folder, simply run:
+```
+make build
+```
+The Docker image will make sharing or deploying the demo easier.
 
 
 ### Completing a project
