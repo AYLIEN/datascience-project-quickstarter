@@ -1,14 +1,4 @@
-import argparse
-import numpy as np
-import json
-from pathlib import Path
-from pprint import pprint
-from copy import deepcopy
-from collections import defaultdict
 import streamlit as st
-import streamlit.components.v1 as components
-from streamlit.server.server import Server
-
 from aylien_zs_classifier.classifier import ZeroShotClassifier
 from aylien_zs_classifier.vector_store import NaiveVectorStore
 from sentence_transformers import SentenceTransformer
@@ -16,8 +6,7 @@ from sentence_transformers import SentenceTransformer
 page_config = st.set_page_config(
     page_title='Zero-Shot Classification',
 )
-#
-# MODEL = SentenceTransformer("paraphrase-mpnet-base-v2", device="cpu")
+
 
 def get_session_state():
     state = st.session_state
@@ -39,7 +28,7 @@ def load_model():
 
 def build_classifier(label_to_desc):
     labels = sorted(label_to_desc)
-    descriptions = [label_to_desc[l] for l in labels]
+    descriptions = [label_to_desc[lb] for lb in labels]
     model = load_model()
     classifier = ZeroShotClassifier(
         model=model,
@@ -58,7 +47,7 @@ def main():
 
     st.write("### Build Classifier")
     default_input = (
-        "\n".join([f"{l}: {d}" for l, d in label_to_desc.items()])
+        "\n".join([f"{lb}: {d}" for lb, d in label_to_desc.items()])
         if len(label_to_desc) > 0
         else "good news: happy great nice\nbad news: sad angry horrible bad"
     )
@@ -79,7 +68,6 @@ def main():
         classifier = build_classifier(label_to_desc)
         session_state["classifier"] = classifier
 
-
     label_to_desc = session_state["label_to_description"]
     if len(label_to_desc) > 0:
         st.write("Your labels:")
@@ -95,11 +83,6 @@ def main():
         st.write(f"This text is classified as `{top_label}`.")
         st.write("Score breakdown:")
         st.write(dict(scored))
-        # for l, score in scored:
-        #     st.write(f"{l}: `{score:.3f}`")
-
-
-
 
 
 if __name__ == '__main__':

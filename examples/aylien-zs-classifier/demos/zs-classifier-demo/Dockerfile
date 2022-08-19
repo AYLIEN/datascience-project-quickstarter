@@ -16,5 +16,6 @@ ADD demos/zs-classifier-demo/Makefile ./
 RUN ls .
 
 RUN pip install -e .
+RUN pip install -r requirements.txt
 
 CMD make run
