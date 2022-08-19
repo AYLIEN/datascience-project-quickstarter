@@ -1,21 +1,24 @@
 from aylien_model_serving.app_factory import FlaskAppWrapper
+from {{PKG_NAME}}.example_module import Counter, TextReverser
 
 
 def run_app():
     """
     This is a mock app, showing how to make simple requests.
     """
-    counter = 0
+    counter = Counter()
+    text_reverser = TextReverser()
 
     def reverse_text(text):
+        nonlocal text_reverser
         text = "".join(list(reversed(text)))
         response = {"text": text}
         return response
 
     def increment_count():
         nonlocal counter
-        counter += 1
-        response = {"count": counter}
+        count = counter()
+        response = {"count": count}
         return response
 
     def process_reverse_text():

@@ -1,4 +1,4 @@
-FROM python:3.7.9-stretch
+FROM python:3.8-bullseye
 
 WORKDIR /srv
 
@@ -10,6 +10,6 @@ ADD VERSION ./
 ADD setup.py ./
 ADD Makefile ./
 
-RUN pip install -e .
+RUN make dev
 
 CMD make run
