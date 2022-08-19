@@ -51,3 +51,5 @@ example-request-classify:
 .PHONY: build
 build:
 	docker build --no-cache -t $(CONTAINER):$(VERSION) -f Dockerfile .
+	@echo "To run the container, use:"
+	@echo "docker run -p 8000:8000 -e --rm -it $(CONTAINER):$(VERSION)"
