@@ -154,6 +154,10 @@ This directory contains executable scripts, usually written in Python or bash. T
 #### The `resources/` directory
 We usually store any large files required in a project such as model binaries or database-like files in `resources`. We usually add a `Makefile` command to obtain these resources locally from an external storage source, e.g. Google Cloud Storage, and do not track them with `git`.
 
+### Testing
+
+Checkout [Testing.md](Testing.md) for instructions to test the datascience project quickstarter, e.g. for making changes.
+
 ### About
 
 The datascience project quickstarter was conceived of and implemented by Demian Gholipour Ghalandari and Chris Hokamp.
