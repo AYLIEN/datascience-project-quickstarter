@@ -53,6 +53,13 @@ def main():
             f"Python package name: {pkg_name}"
         )
 
+    # demo.py
+    utils.read_replace_write(
+        inpath=template_dir / "demo.py",
+        replacements={"{{PKG_NAME}}": pkg_name, "{{DEMO_NAME}}": demo_name},
+        outpath=demo_dir / "demo.py"
+    )
+
     # Dockerfile
     utils.read_replace_write(
         inpath=template_dir / "Dockerfile",
@@ -60,12 +67,17 @@ def main():
         outpath=demo_dir / "Dockerfile"
     )
 
+    # Makefile
+    utils.read_replace_write(
+        inpath=template_dir / "Makefile",
+        replacements={"{{PKG_NAME}}": pkg_name, "{{DEMO_NAME}}": demo_name},
+        outpath=demo_dir / "Makefile"
+    )
+
     # files that are simply copied unmodified
-    shutil.copy(template_dir / "Makefile", demo_dir)
     shutil.copy(template_dir / "README.md", demo_dir)
-    shutil.copy(template_dir / "requirements.txt", demo_dir)
+    shutil.copy(template_dir / "requirements_demo.txt", demo_dir)
     shutil.copy(template_dir / "VERSION", demo_dir)
-    shutil.copy(template_dir / "demo.py", demo_dir)
 
     print(f"Finished creating new demo: {demo_name}")
     print(f"To run, do: cd demos/{demo_name} && make run")

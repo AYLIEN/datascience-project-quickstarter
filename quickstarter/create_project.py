@@ -73,6 +73,13 @@ def main():
         outpath=project_dir / "Dockerfile"
     )
 
+    # example_module.py
+    utils.read_replace_write(
+        inpath=template_dir / "example_module.py",
+        replacements={"{{PKG_NAME}}": package_name},
+        outpath=pkg_dir / "example_module.py"
+    )
+
     # serving.py
     utils.read_replace_write(
         inpath=template_dir / "serving.py",
