@@ -73,7 +73,7 @@ docker run -p 8000:8000 -e --rm -it <image name>:0.1
 You can interact with the containerized service in the same way as earlier, e.g. by running `python examples/example_requests.py`.
 
 
-### Create a new demo
+### Creating new demos
 We begin many projects by creating a proof-of-concept in a Streamlit demo.
 Demos live inside a project.
 Simply run:
