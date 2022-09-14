@@ -20,7 +20,9 @@ This repo also contains a few [examples](examples) of datascience projects that 
 pip install datascience-quickstarter
 ```
 
-After installation finishes, the new command `quickstart` will be available.
+After installation finishes, the the following new commands will be available:
+* `quickstart-project`
+* `quickstart-demo`
 
 ### Creating a new project
 
