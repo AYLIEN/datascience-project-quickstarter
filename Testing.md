@@ -1,3 +1,4 @@
+
 ## Testing the Quickstarter
 The following steps explore the full range of provided actions/features of this tool. Run all of these to check if the tool works when making changes. We're planning to automate this in the future.
 
@@ -7,7 +8,7 @@ The following steps explore the full range of provided actions/features of this 
 `pip install datascience-quickstarter`
 
 2) Create new project (e.g. name `qs-test`) <br>
-`quickstart` + follow instructions
+`quickstart-project` + follow instructions
 
 3) Create new environment <br>
 `conda create -n qs-test python=3.8` (or non-conda alternative) <br>
@@ -44,7 +45,7 @@ The following steps explore the full range of provided actions/features of this 
 #### New demo
 
 8) Create new demo <br>
-`make demo DEMO_NAME=cool-demo`
+`quickstart-streamlit` (call it `cool-demo`)
 
 9) Build Docker image for demo <br>
 `cd demos/cool-demo` <br>

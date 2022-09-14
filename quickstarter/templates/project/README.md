@@ -13,7 +13,9 @@ Run `make dev`
 ### New Demo
 
 Within in a project, you can initialize a new demo as follows: <br>
-`quickstart-demo --project . --name super-cool-demo`
+`quickstart-streamlit --project . --name super-cool-demo`
+
+or just run `quickstart-streamlit` and follow the instructions.
 
 A demo directory with the given name and running streamlit skeleton will be created in [/demos](demos).
 

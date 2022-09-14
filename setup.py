@@ -14,7 +14,8 @@ setup(
     data_files=["LICENSE", "VERSION", "README.md"],
     entry_points={
         "console_scripts": [
-            "quickstart=quickstarter.create_project:main",
+            "quickstart-project=quickstarter.create_project:main",
+            "quickstart-streamlit=quickstarter.create_demo:main",
         ]
     },
     include_package_data=True,

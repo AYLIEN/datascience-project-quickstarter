@@ -20,7 +20,7 @@ def main():
     current_dir = Path.cwd()
     if not utils.is_quickstarter_project(current_dir):
         raise NoProjectException(
-            f"{current_dir} is not a (quickstarter-)project directory."
+            f"{current_dir} is not a (quickstarter-)project directory. "
             "You need to be in a project directory to create a demo."
         )
     else:

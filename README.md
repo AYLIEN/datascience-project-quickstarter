@@ -24,11 +24,11 @@ After installation finishes, the new command `quickstart` will be available.
 
 ### Creating a new project
 
-To start a new project, simply type `quickstart` and you will be guided through the process.
+To start a new project, simply run `quickstart-project` and you will be guided through the process.
 
 You can also provide all required arguments directly, e.g.:
 ```
-quickstart --path cool-project --libname cool_library
+quickstart-project --path cool-project --libname cool_library
 ```
 This will create a project in `cool-project` , including a Python package/library named `cool_library`.
 
@@ -73,19 +73,18 @@ docker run -p 8000:8000 -e --rm -it <image name>:0.1
 You can interact with the containerized service in the same way as earlier, e.g. by running `python examples/example_requests.py`.
 
 
-### Creating new demos
+### Creating new demos using Streamlit
 We begin many projects by creating a proof-of-concept in a Streamlit demo.
-Demos live inside a project.
-Simply run:
+Demos live inside a project. Simply run:
 ```
-make demo DEMO_NAME=cool-demo
+quickstart-streamlit
 ```
-this will create new demo called `cool-demo` in the `demos/` subdirectory of your new data-science project and will immediately start the demo in your browser!
+this will create new demo, e.g. called `cool-demo` in the `demos/` subdirectory of your new data science project. Move into the new demo directory and run the demo in the browser:
+```
+cd demos/cool-demo && make run
+```
 
-Within the demo directory `demos/cool-demo` you can develop the demo (script: `demos/cool-demo/demo.py`) and run it with:
-```
-make run
-```
+Within the demo directory `demos/cool-demo` you can develop the demo which is implemented in the script `demos/cool-demo/demo.py`.
 
 #### Containerize demo with Docker
 You can also containerize the whole demo using Docker! Within the demo folder, simply run:
