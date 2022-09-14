@@ -1,5 +1,5 @@
 streamlit>=1.2.0
-datascience-quickstarter==1.0.0
+datascience-quickstarter==1.0.1
 model-serving==2.0.1
 flake8==3.8.0
 sentence-transformers>=2.1.0
