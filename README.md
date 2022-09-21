@@ -96,15 +96,14 @@ make build
 The Docker image will make sharing or deploying the demo easier.
 
 
-### Completing a project
+### Completing a project (aka productionizing)
 Here is a checklist to turn the new project into a fully functional tool:
 - [ ] implement your project's core functionality in the Python package
+- [ ] write unittests for the key functionality in each new module in the Python package (we like TDD :wink:)
 - [ ] maintain dependencies in `requirements.txt`
 - [ ] implement a demo
 - [ ] implement service
 - [ ] build Docker image & make sure containerized service works afterwards (this often takes a few debugging cycles)
-- [ ] write tests for each new module in the Python package
-
 
 ## Data Science Project Structure
 
