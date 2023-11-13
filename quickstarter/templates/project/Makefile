@@ -53,3 +53,16 @@ build:
 	docker build --no-cache -t $(CONTAINER):$(VERSION) -f Dockerfile .
 	@echo "To run the container, use:"
 	@echo "docker run -p 8000:8000 -e --rm -it $(CONTAINER):$(VERSION)"
+
+
+# Initialise version control
+.PHONY: initialise-version-control 
+initialise-version-control:
+	git init
+	dvc init
+
+
+# Add DVC remote storage
+.PHONY: add-dvc-remote
+add-dvc-remote:
+	dvc remote add ${NAME} ${PATH}

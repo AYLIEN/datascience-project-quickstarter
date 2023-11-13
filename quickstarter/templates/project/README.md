@@ -23,7 +23,15 @@ You can checkout the README generated in the new demo directory for further guid
 
 ### Create Another Project
 
-Run `quickstart-project --path <new project path> --libname <new library name>`    
+Run `quickstart-project --path <new project path> --libname <new library name>`
+
+### Initialise version control
+
+If you would like to use Git and DVC, run `make initialise-version-control`
+
+### Configure DVC remote storage
+
+Run `make add-dvc-remote NAME=your_remote_name PATH=/c/path/to/your/remote_storage`    
 
 ### Completing a project
 Here is a checklist to turn the new project into a fully functional tool:

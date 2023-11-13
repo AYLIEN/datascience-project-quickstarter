@@ -43,6 +43,7 @@ def main():
     (project_dir / "resources").mkdir()
     (project_dir / "research").mkdir()
     (project_dir / "examples").mkdir()
+    (project_dir / "data").mkdir()
     pkg_dir.mkdir()
 
     # Readme
