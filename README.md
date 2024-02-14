@@ -17,7 +17,7 @@ This repo also contains a few [examples](examples) of datascience projects that 
 
 ### Installation
 ```
-pip install datascience-quickstarter
+pip install git+https://github.com/AYLIEN/datascience-project-quickstarter.git
 ```
 
 After installation finishes, the the following new commands will be available:
@@ -37,7 +37,7 @@ This will create a project in `cool-project` , including a Python package/librar
 Next, create and activate a new project-specific environment (we like [miniconda](https://docs.conda.io/en/latest/miniconda.html)):
 ```
 # skip the next two lines if you prefer to create python environments in a different way
-conda create -n cool-project python=3.8
+conda create -n cool-project python=3.10
 conda activate cool-project
 ```
 Go to the new project and install it:
