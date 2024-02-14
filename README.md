@@ -17,7 +17,7 @@ This repo also contains a few [examples](examples) of datascience projects that 
 
 ### Installation
 ```
-pip install datascience-quickstarter
+pip install git+https://github.com/AYLIEN/datascience-project-quickstarter.git
 ```
 
 After installation finishes, the the following new commands will be available:
